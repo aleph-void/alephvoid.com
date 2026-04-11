@@ -2,29 +2,570 @@
 title: Aleph Void, LLC
 ---
 
-<!DOCTYPE HTML>
-<html>
-    <head>
-      <title>{{ page.title }}</title>
-    </head>
-    <body>
-      <header style="width:100%;">
-        <img style="display:block;margin: 0 auto;" src="{{ site.url }}/assets/logo.png" alt="Aleph Void, LLC Logo" align="midde" />
-      </header>
-      <div>
-        <p>Aleph Void, LLC specializes in advanced software reverse engineering services.</p>
-        <div>
-          <h3>Areas of Expertise</h3>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} - Software Security & Reverse Engineering</title>
+  <meta name="description" content="Aleph Void, LLC specializes in software security, reverse engineering, and software engineering services.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #12121a;
+      --bg-card: #16161f;
+      --border: #1e1e2e;
+      --text-primary: #e4e4e7;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --accent: #6d28d9;
+      --accent-light: #8b5cf6;
+      --accent-glow: rgba(139, 92, 246, 0.15);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      background: rgba(10, 10, 15, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    nav .logo-mark {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    nav .logo-mark img {
+      height: 32px;
+      width: auto;
+    }
+
+    nav .logo-mark span {
+      font-weight: 600;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--text-primary);
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 720px;
+    }
+
+    .hero-logo {
+      width: 120px;
+      height: auto;
+      margin-bottom: 2rem;
+      filter: brightness(0) invert(1);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.25rem, 5vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 .accent {
+      color: var(--accent-light);
+    }
+
+    .hero p {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      max-width: 540px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .hero-cta:hover {
+      background: var(--accent-light);
+      transform: translateY(-1px);
+    }
+
+    /* Sections */
+    section {
+      padding: 5rem 2rem;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-light);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .section-desc {
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-bottom: 3rem;
+      line-height: 1.7;
+    }
+
+    /* Services */
+    #services {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .service-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .service-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.1rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.65rem;
+      letter-spacing: -0.01em;
+    }
+
+    .service-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    .service-card ul {
+      list-style: none;
+      margin-top: 0.75rem;
+    }
+
+    .service-card li {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      padding: 0.3rem 0;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .service-card li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent-light);
+    }
+
+    /* Expertise */
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .expertise-item {
+      padding: 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: border-color 0.2s, color 0.2s;
+      background: var(--bg-secondary);
+    }
+
+    .expertise-item:hover {
+      border-color: var(--accent);
+      color: var(--text-primary);
+    }
+
+    .expertise-item .label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      display: block;
+      margin-top: 0.35rem;
+    }
+
+    /* Contact */
+    #contact {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-content {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-text {
+      max-width: 480px;
+    }
+
+    .contact-text p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--accent-light);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+
+    .contact-link:hover {
+      color: #a78bfa;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .contact-detail .icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .contact-detail a {
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-detail a:hover {
+      color: var(--accent-light);
+    }
+
+    /* Footer */
+    footer {
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      nav ul {
+        gap: 1.25rem;
+      }
+
+      nav .logo-mark span {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 8rem 1.5rem 4rem;
+      }
+
+      section {
+        padding: 3.5rem 1.5rem;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-content {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav ul {
+        gap: 1rem;
+      }
+
+      .expertise-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="logo-mark">
+        <img src="{{ site.url }}/assets/logo.png" alt="Aleph Void" style="filter: brightness(0) invert(1);">
+        <span>Aleph Void</span>
+      </a>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#expertise">Expertise</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <img src="{{ site.url }}/assets/logo.png" alt="Aleph Void, LLC" class="hero-logo">
+      <h1>Software Security &<br><span class="accent">Reverse Engineering</span></h1>
+      <p>Aleph Void, LLC delivers expert software security assessments, reverse engineering, and software engineering services for organizations that demand precision.</p>
+      <a href="#contact" class="hero-cta">Get in Touch &darr;</a>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="section-inner">
+      <p class="section-label">// Services</p>
+      <h2 class="section-title">What We Do</h2>
+      <p class="section-desc">Deep technical expertise across the full spectrum of software security and reverse engineering.</p>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">&#x1f50d;</div>
+          <h3>Reverse Engineering</h3>
+          <p>Analysis and modification of software without source code access.</p>
           <ul>
-            <li>Mobile Application development and reverse engineering, including modifying existing applications without access to the source code. (Android, iOS)</li>
-            <li>Server-side Web Application reverse engineering, including modification of existing applications without access to the source code. (Java, .NET)</li>
-            <li>Firmware reverse engineering of UEFI implementations</li>
-            <li>Embedded device firmware extraction and reverse engineering</li>
-            <li>Desktop Application reverse engineering and modification without access to the source code</li>
-            <li>Application Penetration Testing</li>
-            <li>Application Security/Code Reviews</li>
+            <li>Mobile applications (Android & iOS)</li>
+            <li>Server-side web applications (Java, .NET)</li>
+            <li>Desktop applications & native binaries</li>
+            <li>UEFI firmware implementations</li>
+            <li>Embedded device firmware extraction</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">&#x1f6e1;</div>
+          <h3>Application Security</h3>
+          <p>Identify and remediate vulnerabilities before they become incidents.</p>
+          <ul>
+            <li>Application penetration testing</li>
+            <li>Security architecture review</li>
+            <li>Source code security audits</li>
+            <li>Threat modeling</li>
+            <li>Vulnerability assessment</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">&#x2699;</div>
+          <h3>Software Engineering</h3>
+          <p>Building robust, secure software from the ground up.</p>
+          <ul>
+            <li>Secure application development</li>
+            <li>Systems programming</li>
+            <li>Security tooling & automation</li>
+            <li>Technical consulting</li>
+            <li>Architecture & design</li>
           </ul>
         </div>
       </div>
-    </body>
+    </div>
+  </section>
+
+  <section id="expertise">
+    <div class="section-inner">
+      <p class="section-label">// Platforms & Technologies</p>
+      <h2 class="section-title">Technical Expertise</h2>
+      <p class="section-desc">Hands-on experience across diverse platforms, architectures, and technology stacks.</p>
+
+      <div class="expertise-grid">
+        <div class="expertise-item">Android<span class="label">Mobile</span></div>
+        <div class="expertise-item">iOS<span class="label">Mobile</span></div>
+        <div class="expertise-item">Java / .NET<span class="label">Server</span></div>
+        <div class="expertise-item">x86 / ARM<span class="label">Architecture</span></div>
+        <div class="expertise-item">UEFI<span class="label">Firmware</span></div>
+        <div class="expertise-item">Embedded<span class="label">Hardware</span></div>
+        <div class="expertise-item">Web Apps<span class="label">Application</span></div>
+        <div class="expertise-item">Native Code<span class="label">Desktop</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-inner">
+      <p class="section-label">// Contact</p>
+      <h2 class="section-title">Let's Work Together</h2>
+
+      <div class="contact-content">
+        <div class="contact-text">
+          <p>Have a project that requires deep technical expertise? Whether it's a security assessment, reverse engineering engagement, or custom software development, we're ready to help.</p>
+          <a href="mailto:contact@alephvoid.com" class="contact-link">contact@alephvoid.com &rarr;</a>
+        </div>
+
+        <div class="contact-details">
+          <div class="contact-detail">
+            <span class="icon">&#x2709;</span>
+            <a href="mailto:contact@alephvoid.com">contact@alephvoid.com</a>
+          </div>
+          <div class="contact-detail">
+            <span class="icon">&#x1f310;</span>
+            <span>alephvoid.com</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; {{ site.time | date: '%Y' }} Aleph Void, LLC. All rights reserved.
+  </footer>
+
+</body>
 </html>
