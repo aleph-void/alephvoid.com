@@ -1,0 +1,674 @@
+---
+title: Portfolio
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio — Aleph Void, LLC</title>
+  <meta name="description" content="Portfolio of software security and engineering projects by Aleph Void, LLC.">
+  <link rel="icon" type="image/svg+xml" href="{{ site.url }}/assets/logo.svg">
+  <link rel="icon" type="image/png" href="{{ site.url }}/assets/logo.png" sizes="256x256">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #12121a;
+      --bg-card: #16161f;
+      --border: #1e1e2e;
+      --text-primary: #e4e4e7;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --accent: #6d28d9;
+      --accent-light: #8b5cf6;
+      --accent-glow: rgba(139, 92, 246, 0.15);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      background: rgba(10, 10, 15, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    nav .logo-mark {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    nav .logo-mark svg {
+      height: 56px;
+      width: 56px;
+      background-color: #fff;
+      border-radius: 8px;
+      border: 2px solid var(--accent);
+    }
+
+    nav .logo-mark span {
+      font-weight: 600;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--text-primary);
+    }
+
+    nav a.active {
+      color: var(--accent-light);
+    }
+
+    /* Page header */
+    .page-header {
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .page-header-inner {
+      position: relative;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .breadcrumb a {
+      color: var(--accent-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .breadcrumb a:hover {
+      color: #a78bfa;
+    }
+
+    .breadcrumb span {
+      color: var(--text-muted);
+    }
+
+    .page-header h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+    }
+
+    .page-header p {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    /* Project section */
+    .projects {
+      padding: 0 2rem 5rem;
+    }
+
+    .projects-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .project-entry {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg-card);
+      overflow: hidden;
+      margin-bottom: 3rem;
+    }
+
+    .project-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Project header bar */
+    .project-header {
+      padding: 2rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .project-header-left {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .project-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-light);
+      margin-bottom: 0.5rem;
+    }
+
+    .project-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-tagline {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 0.75rem;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.55rem 1.1rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--text-primary);
+      transform: translateY(-1px);
+    }
+
+    /* Project body */
+    .project-body {
+      padding: 2rem 2.5rem;
+    }
+
+    .project-description {
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+      max-width: 780px;
+    }
+
+    /* Stats row */
+    .stats-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .stat {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.9rem 1.25rem;
+      min-width: 140px;
+    }
+
+    .stat-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--accent-light);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    /* Tech tags */
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 4px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      color: var(--accent-light);
+    }
+
+    /* Architecture table */
+    .arch-section {
+      margin-bottom: 2rem;
+    }
+
+    .arch-section h4 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 0.5rem;
+    }
+
+    .arch-item {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.85rem;
+    }
+
+    .arch-item .arch-name {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .arch-item .arch-detail {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 0.15rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Screenshots */
+    .screenshots-section {
+      border-top: 1px solid var(--border);
+      padding: 2rem 2.5rem;
+    }
+
+    .screenshots-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .screenshots-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 1rem;
+    }
+
+    .screenshot-wrap {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .screenshot-wrap:hover {
+      border-color: var(--accent);
+    }
+
+    .screenshot-wrap img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* Footer */
+    footer {
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent-light);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #a78bfa;
+    }
+
+    /* Responsive */
+    @media (max-width: 767px) {
+      nav {
+        padding: 0.75rem 1.25rem;
+      }
+
+      nav ul {
+        gap: 1.25rem;
+      }
+
+      nav a {
+        font-size: 0.8rem;
+      }
+
+      nav .logo-mark span {
+        display: none;
+      }
+
+      nav .logo-mark svg {
+        height: 44px;
+        width: 44px;
+      }
+
+      .page-header {
+        padding: 6.5rem 1.25rem 2.5rem;
+      }
+
+      .projects {
+        padding: 0 1.25rem 3.5rem;
+      }
+
+      .project-header {
+        padding: 1.5rem;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+
+      .project-body {
+        padding: 1.5rem;
+      }
+
+      .screenshots-section {
+        padding: 1.5rem;
+      }
+
+      .screenshots-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-row {
+        gap: 0.75rem;
+      }
+
+      .stat {
+        min-width: 120px;
+      }
+    }
+
+    @media (max-width: 479px) {
+      nav {
+        padding: 0.65rem 1rem;
+      }
+
+      nav ul {
+        gap: 0.875rem;
+      }
+
+      nav .logo-mark svg {
+        height: 38px;
+        width: 38px;
+      }
+
+      .project-header,
+      .project-body,
+      .screenshots-section {
+        padding: 1.25rem;
+      }
+
+      footer {
+        padding: 1.5rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    <symbol id="logo-symbol" viewBox="0 0 256 256">
+      <path fill="#000000" fill-rule="evenodd" d="M 74 24 L 69 29 L 65 36 L 65 39 L 64 40 L 65 49 L 67 52 L 67 54 L 69 56 L 72 62 L 76 66 L 76 67 L 91 82 L 93 83 L 93 84 L 81 92 L 70 103 L 65 113 L 65 124 L 70 134 L 70 136 L 72 139 L 72 142 L 73 143 L 73 145 L 70 152 L 66 156 L 66 162 L 67 164 L 103 164 L 108 155 L 109 147 L 108 146 L 108 143 L 106 138 L 101 131 L 89 118 L 85 110 L 85 104 L 88 98 L 93 93 L 98 90 L 100 90 L 134 125 L 134 126 L 140 132 L 140 133 L 153 148 L 165 165 L 168 164 L 173 159 L 176 154 L 176 152 L 177 151 L 177 139 L 172 130 L 157 113 L 153 107 L 152 102 L 151 101 L 151 89 L 152 88 L 152 84 L 153 83 L 154 77 L 156 73 L 162 67 L 168 67 L 169 68 L 171 68 L 173 70 L 175 69 L 175 65 L 176 64 L 176 43 L 174 39 L 168 35 L 159 34 L 158 32 L 157 33 L 148 32 L 144 30 L 141 27 L 141 23 L 139 23 L 134 29 L 131 36 L 131 42 L 130 43 L 131 54 L 133 58 L 137 62 L 141 64 L 144 64 L 145 66 L 146 65 L 150 65 L 151 66 L 151 68 L 147 72 L 143 78 L 143 80 L 141 83 L 141 86 L 140 87 L 140 92 L 139 93 L 137 93 L 100 54 L 100 53 L 95 48 L 95 47 L 85 35 L 79 26 L 78 23 Z"/>
+      <text x="186" y="176" font-family="'EB Garamond', Georgia, serif" font-size="18" fill="#000000">0</text>
+      <text x="128" y="236" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="20" fill="#000000">Aleph Void</text>
+    </symbol>
+  </svg>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="logo-mark">
+        <svg aria-label="Aleph Void"><use href="#logo-symbol"/></svg>
+        <span>Aleph Void</span>
+      </a>
+      <ul>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/#expertise">Expertise</a></li>
+        <li><a href="/portfolio.html" class="active">Portfolio</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="breadcrumb">
+        <a href="/">Home</a>
+        <span>/</span>
+        <span>Portfolio</span>
+      </div>
+      <h1>Portfolio</h1>
+      <p>Selected open-source projects built by Aleph Void, LLC — spanning security tooling, WebAssembly, and systems programming.</p>
+    </div>
+  </div>
+
+  <div class="projects">
+    <div class="projects-inner">
+
+      <!-- WASMASM -->
+      <article class="project-entry">
+        <div class="project-header">
+          <div class="project-header-left">
+            <p class="project-label">// Open Source &mdash; Software Engineering</p>
+            <h2 class="project-title">WASMASM</h2>
+            <p class="project-tagline">A browser-based multi-architecture CPU assembler and disassembler powered by the Keystone Engine compiled to WebAssembly — no server required.</p>
+          </div>
+          <div class="project-links">
+            <a href="https://wasmasm.computer" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Live Site &rarr;</a>
+            <a href="https://github.com/nstarke/wasmasm" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">GitHub &rarr;</a>
+          </div>
+        </div>
+
+        <div class="project-body">
+          <p class="project-description">
+            WASMASM lets you paste assembly instructions directly in the browser, select a target architecture and word size, and instantly get the assembled bytes back — or paste hex bytes to disassemble them. The Keystone assembler engine and Capstone disassembler engine are compiled from C to WebAssembly via Emscripten, so the full assembly pipeline runs entirely client-side with zero backend infrastructure. A lightweight Vue 3 front-end wires up the controls and handles shareable URL state so assembly snippets can be linked directly.
+          </p>
+
+          <div class="stats-row">
+            <div class="stat">
+              <div class="stat-value">~3,200</div>
+              <div class="stat-label">Lines of Code</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">60+</div>
+              <div class="stat-label">Test Cases</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">6</div>
+              <div class="stat-label">Architectures</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">3</div>
+              <div class="stat-label">Test Suites</div>
+            </div>
+          </div>
+
+          <div class="tech-tags">
+            <span class="tag">WebAssembly</span>
+            <span class="tag">C</span>
+            <span class="tag">Emscripten</span>
+            <span class="tag">Vue 3</span>
+            <span class="tag">Keystone Engine</span>
+            <span class="tag">Capstone Engine</span>
+            <span class="tag">Jest</span>
+            <span class="tag">Playwright</span>
+            <span class="tag">GitHub Actions</span>
+          </div>
+
+          <div class="arch-section">
+            <h4>Supported Architectures</h4>
+            <div class="arch-grid">
+              <div class="arch-item">
+                <div class="arch-name">x86</div>
+                <div class="arch-detail">16 / 32 / 64-bit &middot; little-endian</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">ARM</div>
+                <div class="arch-detail">32-bit &middot; little &amp; big-endian</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">AArch64</div>
+                <div class="arch-detail">64-bit &middot; little-endian</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">MIPS</div>
+                <div class="arch-detail">32 / 64-bit &middot; little &amp; big-endian</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">PowerPC</div>
+                <div class="arch-detail">32 / 64-bit &middot; big-endian</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">SPARC</div>
+                <div class="arch-detail">32-bit &middot; little &amp; big-endian</div>
+              </div>
+            </div>
+          </div>
+
+          <p style="font-size:0.85rem; color:var(--text-muted); font-family:'JetBrains Mono',monospace;">
+            Test coverage: 20 C unit tests &middot; 20+ Jest unit tests &middot; 20+ Playwright E2E tests
+          </p>
+        </div>
+
+        <div class="screenshots-section">
+          <p class="screenshots-label">// Screenshots</p>
+          <div class="screenshots-grid">
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/wasmasm-screenshot0001.png" alt="WASMASM assembler interface showing x86 assembly input and hex output" loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/wasmasm-screenshot0002.png" alt="WASMASM disassembler interface showing hex input and decoded instructions" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <footer>
+    <p style="margin-bottom:0.5rem;">
+      <a href="/">&#8592; Back to Aleph Void, LLC</a>
+    </p>
+    &copy; {{ site.time | date: '%Y' }} Aleph Void, LLC. All rights reserved.
+  </footer>
+
+</body>
+</html>
