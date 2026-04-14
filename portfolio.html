@@ -660,6 +660,102 @@ title: Portfolio
         </div>
       </article>
 
+      <!-- AI MUSIC FEEDBACK -->
+      <article class="project-entry">
+        <div class="project-header">
+          <div class="project-header-left">
+            <p class="project-label">// Open Source &mdash; AI / Desktop Application</p>
+            <h2 class="project-title">AI Music Feedback</h2>
+            <p class="project-tagline">A cross-platform desktop app that streams audio from your computer to the OpenAI Realtime API and delivers live AI feedback on your music — mix, dynamics, tonality, arrangement, and more.</p>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/aleph-void/AI-Music-Feedback" target="_blank" rel="noopener noreferrer" class="btn btn-primary">GitHub &rarr;</a>
+          </div>
+        </div>
+
+        <div class="project-body">
+          <p class="project-description">
+            AI Music Feedback captures PCM audio playing on your computer — from a DAW, streaming service, or any other source — and forwards it to OpenAI over a WebSocket in real time. When the AI detects a pause it responds with concise, actionable feedback. You can also ask questions by typing into the conversation or speaking through a separate microphone while the music stream is live. The full conversation is retained in a transcript view and can be exported to <code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;">.txt</code> or <code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;">.md</code>. API keys are stored encrypted in the OS keychain (macOS Keychain, Windows Credential Store) and the UI is fully localisable — new languages are added by dropping a single JSON file in <code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;">src/i18n/</code>.
+          </p>
+
+          <div class="stats-row">
+            <div class="stat">
+              <div class="stat-value">~3,900</div>
+              <div class="stat-label">Lines of Code</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">400+</div>
+              <div class="stat-label">Test Cases</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">4</div>
+              <div class="stat-label">Build Targets</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">16</div>
+              <div class="stat-label">Test Suites</div>
+            </div>
+          </div>
+
+          <div class="tech-tags">
+            <span class="tag">Electron 33</span>
+            <span class="tag">Vue 3</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">electron-vite</span>
+            <span class="tag">OpenAI Realtime API</span>
+            <span class="tag">Web Audio API</span>
+            <span class="tag">AudioWorklet</span>
+            <span class="tag">vue-i18n</span>
+            <span class="tag">Vitest</span>
+            <span class="tag">electron-builder</span>
+            <span class="tag">GitHub Actions</span>
+          </div>
+
+          <div class="arch-section">
+            <h4>Key Features</h4>
+            <div class="arch-grid">
+              <div class="arch-item">
+                <div class="arch-name">Real-time Analysis</div>
+                <div class="arch-detail">PCM16 audio streamed via WebSocket</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Any Audio Source</div>
+                <div class="arch-detail">DAW, browser, or any OS device</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Voice &amp; Text Input</div>
+                <div class="arch-detail">Mic or typed questions while streaming</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Transcript Export</div>
+                <div class="arch-detail">.txt / .md &middot; Ctrl/Cmd+E</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Encrypted Key Storage</div>
+                <div class="arch-detail">OS keychain via Electron safeStorage</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Internationalisation</div>
+                <div class="arch-detail">Drop-in JSON locale files</div>
+              </div>
+            </div>
+          </div>
+
+          <p style="font-size:0.85rem; color:var(--text-muted); font-family:'JetBrains Mono',monospace;">
+            Builds: Linux &middot; Windows &middot; macOS arm64 &middot; macOS x64 &nbsp;&mdash;&nbsp; released automatically via GitHub Actions on version tags
+          </p>
+        </div>
+
+        <div class="screenshots-section">
+          <p class="screenshots-label">// Screenshots</p>
+          <div class="screenshots-grid">
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/ai-music-feedback-screenshoot0001.png" alt="AI Music Feedback desktop app showing audio source selection, streaming controls, and live AI conversation transcript" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </article>
+
     </div>
   </div>
 
