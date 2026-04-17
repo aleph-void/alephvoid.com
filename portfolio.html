@@ -660,6 +660,113 @@ title: Portfolio
         </div>
       </article>
 
+      <!-- CSP TOOL -->
+      <article class="project-entry">
+        <div class="project-header">
+          <div class="project-header-left">
+            <p class="project-label">// Open Source &mdash; Browser Extension / Web Security</p>
+            <h2 class="project-title">CSP Tool</h2>
+            <p class="project-tagline">A Chrome and Firefox (MV3) browser extension for inspecting, editing, and overriding the Content Security Policy of any web page &mdash; at the meta-tag level or the HTTP header level.</p>
+          </div>
+          <div class="project-links">
+            <a href="https://csptool.net" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Live Site &rarr;</a>
+            <a href="https://github.com/nick-alephvoid/csptool" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">GitHub &rarr;</a>
+          </div>
+        </div>
+
+        <div class="project-body">
+          <p class="project-description">
+            CSP Tool captures CSP values from HTTP response headers via <code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;">chrome.webRequest</code>, parses them into individual directives, and lets you edit, toggle, add, or remove entries in a live editor. Changes can be applied two ways: by injecting a <code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;">&lt;meta http-equiv="Content-Security-Policy"&gt;</code> tag into the page DOM (good for loosening policies without a reload), or by installing a session-scoped <code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;">declarativeNetRequest</code> rule that rewrites the response header outright (full control, including tightening). Named configurations can be scoped to URL match patterns, every <code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;">securitypolicyviolation</code> event fired on the page is surfaced in real time, and the entire UI is localised into 15 languages.
+          </p>
+
+          <div class="stats-row">
+            <div class="stat">
+              <div class="stat-value">2</div>
+              <div class="stat-label">Browsers Supported</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">15</div>
+              <div class="stat-label">Locales</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">28</div>
+              <div class="stat-label">CSP Directives</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">3</div>
+              <div class="stat-label">Apply Modes</div>
+            </div>
+          </div>
+
+          <div class="tech-tags">
+            <span class="tag">Manifest V3</span>
+            <span class="tag">Vue 3</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Vite</span>
+            <span class="tag">Pinia</span>
+            <span class="tag">vue-i18n</span>
+            <span class="tag">Tailwind CSS</span>
+            <span class="tag">DaisyUI</span>
+            <span class="tag">webextension-polyfill</span>
+            <span class="tag">declarativeNetRequest</span>
+            <span class="tag">Vitest</span>
+            <span class="tag">Playwright</span>
+          </div>
+
+          <div class="arch-section">
+            <h4>Key Features</h4>
+            <div class="arch-grid">
+              <div class="arch-item">
+                <div class="arch-name">Directive Editor</div>
+                <div class="arch-detail">Toggle, edit, add, or remove CSP directives</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Header Override</div>
+                <div class="arch-detail">Rewrites CSP via declarativeNetRequest</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Meta-Tag Mode</div>
+                <div class="arch-detail">Loosen CSP in-memory with no reload</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">NO-CSP Injection</div>
+                <div class="arch-detail">Add a CSP to pages that have none</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Per-Site Configs</div>
+                <div class="arch-detail">Named bundles scoped by URL pattern</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Live Violations</div>
+                <div class="arch-detail">securitypolicyviolation events captured</div>
+              </div>
+            </div>
+          </div>
+
+          <p style="font-size:0.85rem; color:var(--text-muted); font-family:'JetBrains Mono',monospace;">
+            Runtime: background service worker &middot; content script &middot; Vue 3 action popup
+          </p>
+        </div>
+
+        <div class="screenshots-section">
+          <p class="screenshots-label">// Screenshots</p>
+          <div class="screenshots-grid">
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/csptool-screenshot0001.png" alt="CSP Tool popup showing the CSP Editor tab with configuration ribbon and directive list" loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/csptool-screenshot0002.png" alt="CSP Tool Errors tab displaying the empty violations state" loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/csptool-screenshot0003.png" alt="CSP Tool Settings tab explaining meta-tag, override, and NO-CSP apply modes" loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/csptool-screenshot0004.png" alt="CSP Tool Settings tab showing current page HTTP and meta CSP status" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </article>
+
       <!-- AI MUSIC FEEDBACK -->
       <article class="project-entry">
         <div class="project-header">
