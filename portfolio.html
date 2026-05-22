@@ -555,12 +555,125 @@ title: Portfolio
         <span>Portfolio</span>
       </div>
       <h1>Portfolio</h1>
-      <p>Selected open-source projects built by Aleph Void, LLC — spanning security tooling, WebAssembly, and systems programming.</p>
+      <p>Selected projects built by Aleph Void, LLC — spanning security tooling, WebAssembly, mobile audio apps, and systems programming.</p>
     </div>
   </div>
 
   <div class="projects">
     <div class="projects-inner">
+
+      <!-- CVOSC -->
+      <article class="project-entry">
+        <div class="project-header">
+          <div class="project-header-left">
+            <p class="project-label">// Commercial &mdash; Mobile / Audio &amp; Modular Synthesis</p>
+            <h2 class="project-title">CVOsc</h2>
+            <p class="project-tagline">A multichannel oscilloscope for iOS and Android that turns a phone or tablet plus a DC-coupled audio interface into a real-time monitor for control voltage and audio signals from Eurorack and modular synth systems.</p>
+          </div>
+          <div class="project-links">
+            <a href="https://cvosc.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Live Site &rarr;</a>
+            <a href="https://apps.apple.com/us/app/cvosc/id6767967087" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">App Store &rarr;</a>
+            <a href="https://play.google.com/store/apps/details?id=com.alephvoid.cvosc.android" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Google Play &rarr;</a>
+          </div>
+        </div>
+
+        <div class="project-body">
+          <p class="project-description">
+            CVOsc streams every input on a DC-offset-capable, class-compliant USB audio interface simultaneously &mdash; up to 16 channels at once &mdash; rendering each as its own live oscilloscope pane in a grid that adapts to the device (4&times;4 on tablets, 2&times;2 on phones). Each channel can run in either CV or audio-rate mode with independent vertical scale, DC offset, and time-base controls, plus autoscaling that fits the waveform to its observed range. A live tuning view uses autocorrelation for audio signals and V/oct mapping for CV, so pitched oscillators and control voltages can be read off directly. Selected channels can be captured to per-channel CAF / WAV files with a JSON sidecar and played back &mdash; with hardware-level DC-safety validation before any output is enabled, drawn from a built-in catalog of known DC-coupled interfaces. All processing and every recording stay local to the device; no data is collected.
+          </p>
+
+          <div class="stats-row">
+            <div class="stat">
+              <div class="stat-value">16</div>
+              <div class="stat-label">Input Channels</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">2</div>
+              <div class="stat-label">Platforms</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">3</div>
+              <div class="stat-label">View Modes</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">2</div>
+              <div class="stat-label">Signal Modes</div>
+            </div>
+          </div>
+
+          <div class="tech-tags">
+            <span class="tag">Swift</span>
+            <span class="tag">SwiftUI</span>
+            <span class="tag">Core Audio</span>
+            <span class="tag">Kotlin</span>
+            <span class="tag">Jetpack Compose</span>
+            <span class="tag">AAudio</span>
+            <span class="tag">USB Audio Class</span>
+            <span class="tag">DSP / Autocorrelation</span>
+          </div>
+
+          <div class="arch-section">
+            <h4>Key Features</h4>
+            <div class="arch-grid">
+              <div class="arch-item">
+                <div class="arch-name">16-Channel Monitoring</div>
+                <div class="arch-detail">Adaptive grid &middot; 4&times;4 tablet, 2&times;2 phone</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">CV &amp; Audio Modes</div>
+                <div class="arch-detail">Per-channel signal-type handling</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Per-Channel Scaling</div>
+                <div class="arch-detail">Range, DC offset &amp; time base</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Live Tuning</div>
+                <div class="arch-detail">Autocorrelation &middot; V/oct mapping</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Recording &amp; Export</div>
+                <div class="arch-detail">Per-channel CAF / WAV + JSON sidecar</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">DC-Safe Playback</div>
+                <div class="arch-detail">Hardware validation before output</div>
+              </div>
+            </div>
+          </div>
+
+          <p style="font-size:0.85rem; color:var(--text-muted); font-family:'JetBrains Mono',monospace;">
+            Platforms: iOS 26.4+ (iPad &amp; iPhone) &middot; Android 7.0+ (SDK 24) &nbsp;&mdash;&nbsp; requires a class-compliant USB audio interface; DC-coupled interface needed for CV work
+          </p>
+        </div>
+
+        <div class="screenshots-section">
+          <p class="screenshots-label">// Screenshots &mdash; iOS</p>
+          <div class="screenshots-grid">
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/cvosc-ios-screenshot0001.png" alt="CVOsc on iPad showing a 16-channel oscilloscope grid with CV and audio waveforms" loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/cvosc-ios-screenshot0002.png" alt="CVOsc iOS per-channel configuration sheet with signal type, range, and offset controls" loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/cvosc-ios-screenshot0003.png" alt="CVOsc iOS recordings panel listing captured per-channel sessions for playback" loading="lazy">
+            </div>
+          </div>
+          <p class="screenshots-label" style="margin-top:1.5rem;">// Screenshots &mdash; Android</p>
+          <div class="screenshots-grid">
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/cvosc-android-screenshot0001.jpg" alt="CVOsc on Android showing the 16-channel oscilloscope grid and control sidebar" loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/cvosc-android-screenshot0002.jpg" alt="CVOsc Android channel settings with CV/Audio signal type, autoscale, range, offset, and time base" loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/cvosc-android-screenshot0003.jpg" alt="CVOsc Android recordings panel showing an ES-9 DC-coupled output and captured channels" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </article>
 
       <!-- WASMASM -->
       <article class="project-entry">
