@@ -562,6 +562,222 @@ title: Portfolio
   <div class="projects">
     <div class="projects-inner">
 
+      <!-- MORPHIX -->
+      <article class="project-entry">
+        <div class="project-header">
+          <div class="project-header-left">
+            <p class="project-label">// Open Source &mdash; Audio / Reverse Engineering &amp; Synth Plugin Development</p>
+            <h2 class="project-title">Morphix</h2>
+            <p class="project-tagline">A polyphonic morphing wavetable synthesizer plugin (AUv3 / VST3 / Standalone) &mdash; a from-scratch reconstruction of the lost 2005 <em>FSR Morphite</em>, with its architecture, parameters, and complete 64-patch factory bank recovered from the original binary and rebuilt with JUCE.</p>
+          </div>
+          <div class="project-links">
+            <a href="https://morphix.alephvoid.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Live Site &rarr;</a>
+            <a href="https://github.com/aleph-void/morphix.alephvoid.com" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">GitHub &rarr;</a>
+          </div>
+        </div>
+
+        <div class="project-body">
+          <p class="project-description">
+            The <em>FSR Morphite</em> was a 2005 Windows VST whose source code was lost. Morphix rebuilds it from scratch: its signal path, all 29 parameters, and the full 64-patch factory bank were reverse-engineered from the original binary and re-implemented with JUCE as a modern, multi-architecture plugin. The voice is a single morphing wavetable oscillator &mdash; one morph control sweeps continuously through the table, smoothly blending one waveform into the next &mdash; feeding a state-variable filter with its own ADSR, an amp VCA, and a stereo flanger on the output, with a tempo-syncable LFO routable to morph and cutoff. The recovered factory bank ships as standard Steinberg <code>.vstpreset</code> files (also exposed as host programs), and users can import and export their own from the UI. Morphix does no networking and collects nothing &mdash; no account, no telemetry, everything runs locally.
+          </p>
+
+          <div class="stats-row">
+            <div class="stat">
+              <div class="stat-value">64</div>
+              <div class="stat-label">Factory Presets</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">29</div>
+              <div class="stat-label">Parameters</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">4</div>
+              <div class="stat-label">Platforms</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">0</div>
+              <div class="stat-label">Data Collected</div>
+            </div>
+          </div>
+
+          <div class="tech-tags">
+            <span class="tag">C++</span>
+            <span class="tag">JUCE</span>
+            <span class="tag">AUv3</span>
+            <span class="tag">VST3</span>
+            <span class="tag">Standalone</span>
+            <span class="tag">Wavetable Synthesis</span>
+            <span class="tag">DSP</span>
+            <span class="tag">Binary Reverse Engineering</span>
+          </div>
+
+          <div class="arch-section">
+            <h4>Key Features</h4>
+            <div class="arch-grid">
+              <div class="arch-item">
+                <div class="arch-name">Morphing Wavetable Oscillator</div>
+                <div class="arch-detail">One morph control sweeps the table</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">State-Variable Filter</div>
+                <div class="arch-detail">Cutoff, reso, filter env, key-track</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Dual ADSR &amp; Tempo LFO</div>
+                <div class="arch-detail">Amp + filter envelopes &middot; synced LFO</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Stereo Flanger</div>
+                <div class="arch-detail">Width and motion on the output</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">64 Recovered Presets</div>
+                <div class="arch-detail">.vstpreset files &middot; import / export</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">AUv3, VST3 &amp; Standalone</div>
+                <div class="arch-detail">Logic, GarageBand, Ableton, any host</div>
+              </div>
+            </div>
+          </div>
+
+          <p style="font-size:0.85rem; color:var(--text-muted); font-family:'JetBrains Mono',monospace;">
+            Platforms: macOS (universal arm64 + x86_64) &middot; iOS / iPadOS (AUv3, iOS 13+) &middot; Windows (x64 + ARM64) &middot; Linux (x86_64 + aarch64). An independent reconstruction &mdash; the original <em>FSR Morphite</em> is referenced only as the historical source of the recovered design.
+          </p>
+        </div>
+
+        <div class="screenshots-section">
+          <p class="screenshots-label">// Screenshots &mdash; macOS (AUv3 / VST3 / Standalone)</p>
+          <div class="screenshots-grid">
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/morphix-macos-screenshot0001.png" alt="Morphix full plugin window on macOS showing the oscillator, LFO, filter, envelopes, pitch, and output sections" loading="lazy">
+            </div>
+          </div>
+          <p class="screenshots-label" style="margin-top:1.5rem;">// Screenshots &mdash; iOS / iPadOS</p>
+          <div class="screenshots-grid">
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/morphix-ios-screenshot0001.png" alt="Morphix on iPad showing the oscillator, LFO, filter, and pitch sections" loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/morphix-ios-screenshot0002.png" alt="Morphix on iPad showing the amp and filter envelopes, pitch, and output sections over the keyboard" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- VIRUX -->
+      <article class="project-entry">
+        <div class="project-header">
+          <div class="project-header-left">
+            <p class="project-label">// Open Source &mdash; Audio / Reverse Engineering &amp; Driver Development</p>
+            <h2 class="project-title">Aleph Virux</h2>
+            <p class="project-tagline">A userspace driver and synth plugin that brings the Access Virus TI (Snow, Desktop, Polar) back to life on Apple Silicon Macs and Android &mdash; no kext, no DriverKit, the original control surface as an AUv3 / VST3.</p>
+          </div>
+          <div class="project-links">
+            <a href="https://virux.alephvoid.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Live Site &rarr;</a>
+            <a href="https://github.com/aleph-void/virux.alephvoid.com" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">GitHub &rarr;</a>
+          </div>
+        </div>
+
+        <div class="project-body">
+          <p class="project-description">
+            Access shipped the Virus TI with an x86 kernel extension that never made the jump to Apple Silicon, stranding the hardware on legacy machines. Aleph Virux rebuilds the entire stack from scratch in userspace &mdash; the whole USB stack talks to the device over IOUSBLib, so nothing loads into the kernel and there's no system extension to approve or reboot to install. A lightweight container app claims the Virus over USB and keeps its keepalive stream alive; the AUv3 extension and VST3 plugin then connect to it over XPC / IPC, so a single USB device can drive multiple plugin instances without a kernel driver in the middle. The on-screen editor &mdash; oscillators, filters, LFOs, the modulation matrix, arpeggiator, and the full effects section &mdash; is sourced from the documented page&nbsp;A/B parameter model, with multi-channel USB audio captured through CoreAudio and full note / CC / parameter control over the device's native vendor protocol. The macOS VST3 build passes the Steinberg SDK validator 47/47. Built clean-room from a reverse-engineered understanding of the protocol, with no vendor binaries required; the macOS driver and plugins do no networking and collect nothing.
+          </p>
+
+          <div class="stats-row">
+            <div class="stat">
+              <div class="stat-value">47/47</div>
+              <div class="stat-label">VST3 Validator</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">2</div>
+              <div class="stat-label">Platforms</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">0</div>
+              <div class="stat-label">Kernel Extensions</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">3</div>
+              <div class="stat-label">Virus TI Models</div>
+            </div>
+          </div>
+
+          <div class="tech-tags">
+            <span class="tag">C++</span>
+            <span class="tag">Swift</span>
+            <span class="tag">IOUSBLib</span>
+            <span class="tag">Core Audio</span>
+            <span class="tag">AUv3</span>
+            <span class="tag">VST3</span>
+            <span class="tag">XPC / IPC</span>
+            <span class="tag">USB Reverse Engineering</span>
+            <span class="tag">Kotlin</span>
+          </div>
+
+          <div class="arch-section">
+            <h4>Key Features</h4>
+            <div class="arch-grid">
+              <div class="arch-item">
+                <div class="arch-name">Userspace USB Driver</div>
+                <div class="arch-detail">IOUSBLib &middot; no kext, no DriverKit</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Container + Plugin over IPC</div>
+                <div class="arch-detail">One device, many plugin instances</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">AUv3 &amp; VST3</div>
+                <div class="arch-detail">Logic, GarageBand, Ableton Live, any host</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Original Control Surface</div>
+                <div class="arch-detail">Osc, filter, LFO, matrix, arp, FX</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Audio &amp; MIDI Over USB</div>
+                <div class="arch-detail">CoreAudio capture &middot; vendor control protocol</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Clean-Room Protocol</div>
+                <div class="arch-detail">No vendor binaries &middot; no data collection</div>
+              </div>
+            </div>
+          </div>
+
+          <p style="font-size:0.85rem; color:var(--text-muted); font-family:'JetBrains Mono',monospace;">
+            Platforms: macOS on Apple Silicon (AUv3 / VST3) &middot; Android with USB host vendor access &nbsp;&mdash;&nbsp; requires an Access Virus TI Snow, Desktop, or Polar over USB. No iOS build &mdash; iOS forbids the vendor USB access this needs.
+          </p>
+        </div>
+
+        <div class="screenshots-section">
+          <p class="screenshots-label">// Screenshots &mdash; macOS (AUv3 / VST3)</p>
+          <div class="screenshots-grid">
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/virux-macos-screenshot0001.png" alt="Aleph Virux oscillator edit page running as an AUv3 plugin on macOS" loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/virux-macos-screenshot0002.png" alt="Aleph Virux modulation matrix page on macOS" loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/virux-macos-screenshot0003.png" alt="Aleph Virux effects section on macOS" loading="lazy">
+            </div>
+          </div>
+          <p class="screenshots-label" style="margin-top:1.5rem;">// Screenshots &mdash; Android</p>
+          <div class="screenshots-grid">
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/virux-android-screenshot0001.jpg" alt="Aleph Virux preset browser in the Android control app" loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/virux-android-screenshot0002.jpg" alt="Aleph Virux arpeggiator page on Android" loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/virux-android-screenshot0003.jpg" alt="Aleph Virux modulation matrix page on Android" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </article>
+
       <!-- CVOSC -->
       <article class="project-entry">
         <div class="project-header">
