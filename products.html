@@ -556,7 +556,7 @@ title: Products
         <span>Products</span>
       </div>
       <h1>Products</h1>
-      <p>Software built and supported by Aleph Void, LLC — virtualization, audio plugins and drivers, and mobile instrumentation.</p>
+      <p>Software built and supported by Aleph Void, LLC — virtualization, audio plugins and drivers, mobile instrumentation, and developer tools.</p>
     </div>
   </div>
 
@@ -987,6 +987,106 @@ title: Products
             </div>
             <div class="screenshot-wrap">
               <img src="assets/portfolio/cvosc-android-screenshot0003.jpg" alt="CVOsc Android recordings panel showing an ES-9 DC-coupled output and captured channels" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- LLM USAGE WIDGET -->
+      <article class="project-entry">
+        <div class="project-header">
+          <div class="project-header-left">
+            <p class="project-label">// Open Source &mdash; Desktop / Developer Tools</p>
+            <h2 class="project-title">LLM Usage Widget</h2>
+            <p class="project-tagline">Your Claude and Codex plan usage limits, always in view &mdash; in the Linux top bar, the macOS menu bar or the Windows taskbar, with a countdown to each reset.</p>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/aleph-void/LLM-Usage-Desktop-Widget/releases/latest" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Download &rarr;</a>
+            <a href="https://github.com/aleph-void/LLM-Usage-Desktop-Widget" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">GitHub &rarr;</a>
+          </div>
+        </div>
+
+        <div class="project-body">
+          <p class="project-description">
+            The widget sits where your system status icons live and shows a compact readout such as <code>Claude 99%&nbsp;&nbsp;Codex 13%</code>. Click it for every limit &mdash; session and weekly windows and model-scoped limits &mdash; each with its percentage and time until reset, plus a refresh button and links to each provider&rsquo;s usage page. Bars and icons turn amber at 70% and red at 90%; once a plan is maxed out and usage credits remain, the readout switches to what is left of those instead. There is nothing to configure: it reuses the logins Claude Code and the Codex CLI already store on your machine, only ever reading them, and sends each token only to the provider that issued it. Optional providers report spend and budgets for Amazon Bedrock, Google Vertex and Azure from your existing cloud credentials. A floating always-on-top window covers desktops without a tray, and <em>Collapse to logo</em> hides the numbers behind the Aleph Void &#x2135;&#x2080; icon until you want them.
+          </p>
+
+          <div class="stats-row">
+            <div class="stat">
+              <div class="stat-value">5</div>
+              <div class="stat-label">Providers</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">3</div>
+              <div class="stat-label">Desktop Platforms</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">0</div>
+              <div class="stat-label">Setup Steps</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">MIT</div>
+              <div class="stat-label">License</div>
+            </div>
+          </div>
+
+          <div class="tech-tags">
+            <span class="tag">Python</span>
+            <span class="tag">PyGObject</span>
+            <span class="tag">AppIndicator</span>
+            <span class="tag">pystray</span>
+            <span class="tag">Pillow</span>
+            <span class="tag">boto3</span>
+            <span class="tag">Inno Setup</span>
+            <span class="tag">PowerShell</span>
+          </div>
+
+          <div class="arch-section">
+            <h4>Key Features</h4>
+            <div class="arch-grid">
+              <div class="arch-item">
+                <div class="arch-name">Claude &amp; Codex Limits</div>
+                <div class="arch-detail">Session, weekly &amp; model-scoped windows</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Reset Countdowns</div>
+                <div class="arch-detail">Time until each limit resets</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Zero Configuration</div>
+                <div class="arch-detail">Reuses existing CLI logins &middot; read-only</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Cloud Spend</div>
+                <div class="arch-detail">Bedrock, Vertex &amp; Azure budgets</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Native Placement</div>
+                <div class="arch-detail">Top bar, menu bar or taskbar</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Installers</div>
+                <div class="arch-detail">.deb &middot; notarized macOS .pkg &middot; Windows setup</div>
+              </div>
+            </div>
+          </div>
+
+          <p style="font-size:0.85rem; color:var(--text-muted); font-family:'JetBrains Mono',monospace;">
+            Platforms: Linux (Debian/Ubuntu .deb; GNOME, KDE, XFCE, Cinnamon) &middot; macOS (Apple Silicon &amp; Intel) &middot; Windows (x64 &amp; ARM64) &nbsp;&mdash;&nbsp; requires a Claude Code and/or Codex CLI login.
+          </p>
+        </div>
+
+        <div class="screenshots-section">
+          <p class="screenshots-label">// Screenshots &mdash; Linux, macOS &amp; Windows</p>
+          <div class="screenshots-grid">
+            <div class="screenshot-wrap">
+              <img src="https://raw.githubusercontent.com/aleph-void/LLM-Usage-Desktop-Widget/HEAD/images/ubuntu.png" alt="LLM Usage Widget in the Ubuntu top bar with its menu open" loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+              <img src="https://raw.githubusercontent.com/aleph-void/LLM-Usage-Desktop-Widget/HEAD/images/macos.png" alt="LLM Usage Widget in the macOS menu bar with its menu open" loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+              <img src="https://raw.githubusercontent.com/aleph-void/LLM-Usage-Desktop-Widget/HEAD/images/windows.png" alt="LLM Usage Widget on the Windows taskbar with its menu open" loading="lazy">
             </div>
           </div>
         </div>
