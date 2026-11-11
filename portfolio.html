@@ -540,6 +540,7 @@ title: Portfolio
       </a>
       <ul>
         <li><a href="/#services">Services</a></li>
+        <li><a href="/products.html">Products</a></li>
         <li><a href="/#expertise">Expertise</a></li>
         <li><a href="/portfolio.html" class="active">Portfolio</a></li>
         <li><a href="/#contact">Contact</a></li>
@@ -555,134 +556,144 @@ title: Portfolio
         <span>Portfolio</span>
       </div>
       <h1>Portfolio</h1>
-      <p>Selected projects built by Aleph Void, LLC — spanning security tooling, WebAssembly, mobile audio apps, and systems programming.</p>
+      <p>Selected open-source projects by Aleph Void, LLC — firmware emulation, Ghidra processor modules, audio plugins, and WebAssembly tooling.</p>
     </div>
   </div>
 
   <div class="projects">
     <div class="projects-inner">
 
-      <!-- CHIPTUNE RADIO -->
+      <!-- SQ-64 EMULATOR -->
       <article class="project-entry">
         <div class="project-header">
           <div class="project-header-left">
-            <p class="project-label">// Side Project &mdash; Music / Live Streaming</p>
-            <h2 class="project-title">Chiptune Radio</h2>
-            <p class="project-tagline">An around-the-clock stream of chiptune &mdash; 8-bit soundchips, trackers, and demoscene energy &mdash; broadcast 24/7 on Twitch by Aleph Void, LLC.</p>
+            <p class="project-label">// Open Source &mdash; Firmware Emulation / Reverse Engineering</p>
+            <h2 class="project-title">Korg SQ-64 Emulator</h2>
+            <p class="project-tagline">A browser-based firmware workbench for the Korg SQ-64 step sequencer: an ARM board model compiled to WebAssembly that boots real firmware, alongside updater and backup / restore tools that talk to the hardware over Web MIDI.</p>
           </div>
           <div class="project-links">
-            <a href="https://chiptune-radio.alephvoid.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Live Site &rarr;</a>
-            <a href="https://www.twitch.tv/alephvoidchiptuneradio" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Twitch &rarr;</a>
+            <a href="https://sq64.alephvoid.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Live Site &rarr;</a>
+            <a href="https://github.com/aleph-void/Korg-SQ-64-Emulator" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">GitHub &rarr;</a>
           </div>
         </div>
 
         <div class="project-body">
           <p class="project-description">
-            Chiptune Radio is a continuous, radio-style broadcast of music composed for and inspired by classic sound hardware &mdash; the Commodore 64's SID, the NES APU, the Game Boy's four channels, and the tracker scene that keeps them alive. Drop in any time, leave it on in the background, and let the playlist do the work while you code, reverse engineer, or just vibe. The site itself is a zero-backend static page that embeds the live Twitch player and chat directly, so Twitch handles all the streaming infrastructure.
+            The emulator runs supplied SQ-64 firmware on an emulated ARM CPU, with every panel control wired through modeled peripherals &mdash; all 64 pads, 21 other buttons, six encoders, the LEDs and the display &mdash; so the original firmware boots and responds as it would on the device, including the boot chords that enter update mode. It runs entirely in the browser with no server, account or vendor firmware required. The same Vue 3 app doubles as a device toolkit: firmware transfer and backup / restore over Web MIDI SysEx, against either the emulator or a physical SQ-64. For custom-firmware developers it adds a debugger (single-step, breakpoints, registers, memory inspection and instruction trace) and <strong>Validate Image</strong>, which checks a build against the published SQ-64 custom-firmware conformance spec and blocks anything a critical damage detector flags. A modified image developed in the emulator has been flashed to real hardware by a community tester, with update mode, panel controls, settings, project save / load and USB MIDI behaving the same on the device. A Python engine provides deterministic headless runs and reports for CI. This is the kind of work offered as <a href="/firmware-emulation.html" style="color:var(--accent-light);text-decoration:none;">Firmware Emulation</a> services.
           </p>
 
           <div class="stats-row">
             <div class="stat">
-              <div class="stat-value">24/7</div>
-              <div class="stat-label">Live Broadcast</div>
+              <div class="stat-value">64</div>
+              <div class="stat-label">Modeled Pads</div>
             </div>
             <div class="stat">
-              <div class="stat-value">3</div>
-              <div class="stat-label">Classic Soundchips</div>
+              <div class="stat-value">21</div>
+              <div class="stat-label">Other Buttons</div>
             </div>
             <div class="stat">
-              <div class="stat-value">1</div>
-              <div class="stat-label">Twitch Channel</div>
+              <div class="stat-value">6</div>
+              <div class="stat-label">Encoders</div>
             </div>
             <div class="stat">
               <div class="stat-value">0</div>
-              <div class="stat-label">Backend Servers</div>
+              <div class="stat-label">Servers Required</div>
             </div>
           </div>
 
           <div class="tech-tags">
-            <span class="tag">Twitch Embed</span>
-            <span class="tag">Live Streaming</span>
-            <span class="tag">Static Site</span>
-            <span class="tag">JavaScript</span>
-            <span class="tag">Chiptune</span>
-            <span class="tag">Demoscene</span>
+            <span class="tag">WebAssembly</span>
+            <span class="tag">ARM</span>
+            <span class="tag">Vue 3</span>
+            <span class="tag">Web MIDI</span>
+            <span class="tag">SysEx</span>
+            <span class="tag">Python</span>
+            <span class="tag">Unicorn</span>
+            <span class="tag">Playwright</span>
+            <span class="tag">Firmware Reverse Engineering</span>
           </div>
 
           <div class="arch-section">
             <h4>Key Features</h4>
             <div class="arch-grid">
               <div class="arch-item">
-                <div class="arch-name">Always On</div>
-                <div class="arch-detail">Continuous radio-style broadcast</div>
+                <div class="arch-name">Full Panel Model</div>
+                <div class="arch-detail">Pads, buttons, encoders, LEDs &amp; display</div>
               </div>
               <div class="arch-item">
-                <div class="arch-name">Pure Chiptune</div>
-                <div class="arch-detail">SID &middot; NES APU &middot; Game Boy &middot; trackers</div>
+                <div class="arch-name">Runs in the Browser</div>
+                <div class="arch-detail">WebAssembly &middot; no server or account</div>
               </div>
               <div class="arch-item">
-                <div class="arch-name">Embedded Player &amp; Chat</div>
-                <div class="arch-detail">Live Twitch player + chat on the page</div>
+                <div class="arch-name">Updater &amp; Backup / Restore</div>
+                <div class="arch-detail">Web MIDI SysEx &middot; emulator or real device</div>
               </div>
               <div class="arch-item">
-                <div class="arch-name">Zero Backend</div>
-                <div class="arch-detail">Static page &middot; Twitch does the streaming</div>
+                <div class="arch-name">Firmware Debugger</div>
+                <div class="arch-detail">Step, breakpoints, registers, trace</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Conformance Validation</div>
+                <div class="arch-detail">Custom-firmware spec &middot; damage detectors</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Headless Engine</div>
+                <div class="arch-detail">Python CLI &middot; reproducible JSON reports</div>
               </div>
             </div>
           </div>
 
           <p style="font-size:0.85rem; color:var(--text-muted); font-family:'JetBrains Mono',monospace;">
-            Listen: <a href="https://chiptune-radio.alephvoid.com" target="_blank" rel="noopener noreferrer" style="color:var(--accent-light);text-decoration:none;">chiptune-radio.alephvoid.com</a> &middot; twitch.tv/alephvoidchiptuneradio
+            Platforms: any modern browser (desktop &amp; mobile) &middot; optional native Python workbench &nbsp;&mdash;&nbsp; an experimental board model, tested against real SQ-64 hardware; analog outputs and electrical timing are out of scope. Bring your own firmware image.
           </p>
         </div>
       </article>
 
-      <!-- MORPHIX -->
+      <!-- GHIDRA-RARE -->
       <article class="project-entry">
         <div class="project-header">
           <div class="project-header-left">
-            <p class="project-label">// Open Source &mdash; Audio / Reverse Engineering &amp; Synth Plugin Development</p>
-            <h2 class="project-title">Morphix</h2>
-            <p class="project-tagline">A polyphonic morphing wavetable synthesizer plugin (AUv3 / VST3 / Standalone) &mdash; a from-scratch reconstruction of the lost 2005 <em>FSR Morphite</em>, with its architecture, parameters, and complete 64-patch factory bank recovered from the original binary and rebuilt with JUCE.</p>
+            <p class="project-label">// Open Source &mdash; Reverse Engineering / Ghidra Processor Modules</p>
+            <h2 class="project-title">Ghidra-Rare</h2>
+            <p class="project-tagline">A collection of Ghidra processor modules (SLEIGH) for uncommon CPU, DSP and GPU architectures &mdash; from NVIDIA SASS and Itanium to Cisco&rsquo;s PXF packet processor &mdash; each tested against a reference disassembler.</p>
           </div>
           <div class="project-links">
-            <a href="https://morphix.alephvoid.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Live Site &rarr;</a>
-            <a href="https://github.com/aleph-void/morphix.alephvoid.com" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">GitHub &rarr;</a>
+            <a href="https://github.com/aleph-void/Ghidra-Rare" target="_blank" rel="noopener noreferrer" class="btn btn-primary">GitHub &rarr;</a>
           </div>
         </div>
 
         <div class="project-body">
           <p class="project-description">
-            The <em>FSR Morphite</em> was a 2005 Windows VST whose source code was lost. Morphix rebuilds it from scratch: its signal path, all 29 parameters, and the full 64-patch factory bank were reverse-engineered from the original binary and re-implemented with JUCE as a modern, multi-architecture plugin. The voice is a single morphing wavetable oscillator &mdash; one morph control sweeps continuously through the table, smoothly blending one waveform into the next &mdash; feeding a state-variable filter with its own ADSR, an amp VCA, and a stereo flanger on the output, with a tempo-syncable LFO routable to morph and cutoff. The recovered factory bank ships as standard Steinberg <code>.vstpreset</code> files (also exposed as host programs), and users can import and export their own from the UI. Morphix does no networking and collects nothing &mdash; no account, no telemetry, everything runs locally.
+            Ghidra ships with a broad but finite set of processors; Ghidra-Rare fills in the long tail. It has two parts. The first is a set of modules written here, bringing to Ghidra the architectures covered by a well-known collection of IDA Pro processor modules plus additional CPUs for parity with IDA&rsquo;s built-in support &mdash; TI PRU, AMD/Xilinx MicroBlaze, XMOS xCORE, TI C7x, NVIDIA GPU SASS (Kepler through Blackwell), Zilog Z8, ST9, Philips XA, TMS320C2x/C5x, Renesas RX, Intel i860, ADSP-218x, Motorola DSP56000, Intel IA-64, plus clean-room Telink TC32 and Cisco PXF modules. The second is a curated set of community modules: SLEIGH specifications other people wrote for unsupported CPUs, collected from GitHub and from unmerged Ghidra pull requests, then tested to the same standard, fixed where testing found problems, and pinned as submodules &mdash; each in an aleph-void fork that keeps the original license and credits the original authors. Every module documents its language variants, how closely it matches the reference disassembler, what the p-code models and its known gaps. Release builds cover the three newest Ghidra releases.
           </p>
 
           <div class="stats-row">
             <div class="stat">
-              <div class="stat-value">64</div>
-              <div class="stat-label">Factory Presets</div>
+              <div class="stat-value">16</div>
+              <div class="stat-label">Original Modules</div>
             </div>
             <div class="stat">
-              <div class="stat-value">29</div>
-              <div class="stat-label">Parameters</div>
+              <div class="stat-value">78</div>
+              <div class="stat-label">Community Modules</div>
             </div>
             <div class="stat">
-              <div class="stat-value">4</div>
-              <div class="stat-label">Platforms</div>
+              <div class="stat-value">3</div>
+              <div class="stat-label">Ghidra Releases</div>
             </div>
             <div class="stat">
-              <div class="stat-value">0</div>
-              <div class="stat-label">Data Collected</div>
+              <div class="stat-value">11</div>
+              <div class="stat-label">NVIDIA SM Targets</div>
             </div>
           </div>
 
           <div class="tech-tags">
-            <span class="tag">C++</span>
-            <span class="tag">JUCE</span>
-            <span class="tag">AUv3</span>
-            <span class="tag">VST3</span>
-            <span class="tag">Standalone</span>
-            <span class="tag">Wavetable Synthesis</span>
-            <span class="tag">DSP</span>
+            <span class="tag">Ghidra</span>
+            <span class="tag">SLEIGH</span>
+            <span class="tag">P-code</span>
+            <span class="tag">Java</span>
+            <span class="tag">Python</span>
+            <span class="tag">Disassembly</span>
+            <span class="tag">Decompilation</span>
             <span class="tag">Binary Reverse Engineering</span>
           </div>
 
@@ -690,277 +701,128 @@ title: Portfolio
             <h4>Key Features</h4>
             <div class="arch-grid">
               <div class="arch-item">
-                <div class="arch-name">Morphing Wavetable Oscillator</div>
-                <div class="arch-detail">One morph control sweeps the table</div>
+                <div class="arch-name">GPU &amp; DSP Coverage</div>
+                <div class="arch-detail">NVIDIA SASS, TI C7x, ADSP-218x, DSP56000</div>
               </div>
               <div class="arch-item">
-                <div class="arch-name">State-Variable Filter</div>
-                <div class="arch-detail">Cutoff, reso, filter env, key-track</div>
+                <div class="arch-name">Exotic CPUs</div>
+                <div class="arch-detail">IA-64, i860, MicroBlaze, xCORE, RX</div>
               </div>
               <div class="arch-item">
-                <div class="arch-name">Dual ADSR &amp; Tempo LFO</div>
-                <div class="arch-detail">Amp + filter envelopes &middot; synced LFO</div>
+                <div class="arch-name">Clean-Room Modules</div>
+                <div class="arch-detail">Telink TC32 &middot; Cisco PXF</div>
               </div>
               <div class="arch-item">
-                <div class="arch-name">Stereo Flanger</div>
-                <div class="arch-detail">Width and motion on the output</div>
+                <div class="arch-name">Community Modules</div>
+                <div class="arch-detail">Tested, fixed, credited &amp; pinned</div>
               </div>
               <div class="arch-item">
-                <div class="arch-name">64 Recovered Presets</div>
-                <div class="arch-detail">.vstpreset files &middot; import / export</div>
+                <div class="arch-name">Loaders</div>
+                <div class="arch-detail">TI COFF, VisualDSP++ DXE, Motorola LOD</div>
               </div>
               <div class="arch-item">
-                <div class="arch-name">AUv3, VST3 &amp; Standalone</div>
-                <div class="arch-detail">Logic, GarageBand, Ableton, any host</div>
+                <div class="arch-name">Per-Module Test Suites</div>
+                <div class="arch-detail">Checked against reference disassemblers</div>
               </div>
             </div>
           </div>
 
           <p style="font-size:0.85rem; color:var(--text-muted); font-family:'JetBrains Mono',monospace;">
-            Platforms: macOS (universal arm64 + x86_64) &middot; iOS / iPadOS (AUv3, iOS 13+) &middot; Windows (x64 + ARM64) &middot; Linux (x86_64 + aarch64). An independent reconstruction &mdash; the original <em>FSR Morphite</em> is referenced only as the historical source of the recovered design.
+            Developed on Ghidra 12.1.4 &middot; release builds for Ghidra 12.1.3, 12.1.4 and 12.2. Community modules remain under their original licenses.
           </p>
-        </div>
-
-        <div class="screenshots-section">
-          <p class="screenshots-label">// Screenshots &mdash; macOS (AUv3 / VST3 / Standalone)</p>
-          <div class="screenshots-grid">
-            <div class="screenshot-wrap">
-              <img src="assets/portfolio/morphix-macos-screenshot0001.png" alt="Morphix full plugin window on macOS showing the oscillator, LFO, filter, envelopes, pitch, and output sections" loading="lazy">
-            </div>
-          </div>
-          <p class="screenshots-label" style="margin-top:1.5rem;">// Screenshots &mdash; iOS / iPadOS</p>
-          <div class="screenshots-grid">
-            <div class="screenshot-wrap">
-              <img src="assets/portfolio/morphix-ios-screenshot0001.png" alt="Morphix on iPad showing the oscillator, LFO, filter, and pitch sections" loading="lazy">
-            </div>
-            <div class="screenshot-wrap">
-              <img src="assets/portfolio/morphix-ios-screenshot0002.png" alt="Morphix on iPad showing the amp and filter envelopes, pitch, and output sections over the keyboard" loading="lazy">
-            </div>
-          </div>
         </div>
       </article>
 
-      <!-- VIRUX -->
+      <!-- BUZZBRIDGE -->
       <article class="project-entry">
         <div class="project-header">
           <div class="project-header-left">
-            <p class="project-label">// Open Source &mdash; Audio / Reverse Engineering &amp; Driver Development</p>
-            <h2 class="project-title">Aleph Virux</h2>
-            <p class="project-tagline">A userspace driver and synth plugin that brings the Access Virus TI (Snow, Desktop, Polar) back to life on Apple Silicon Macs and Android &mdash; no kext, no DriverKit, the original control surface as an AUv3 / VST3.</p>
+            <p class="project-label">// Open Source &mdash; Audio / Plugin Development</p>
+            <h2 class="project-title">BuzzBridge VST3</h2>
+            <p class="project-tagline">A VST3 wrapper that loads Jeskola Buzz machine DLLs &mdash; the 32-bit instruments and effects of the classic Buzz tracker &mdash; and runs them inside any modern VST3 DAW, 32-bit or 64-bit.</p>
           </div>
           <div class="project-links">
-            <a href="https://virux.alephvoid.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Live Site &rarr;</a>
-            <a href="https://github.com/aleph-void/virux.alephvoid.com" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">GitHub &rarr;</a>
+            <a href="https://github.com/aleph-void/JeskolaBuzzVST" target="_blank" rel="noopener noreferrer" class="btn btn-primary">GitHub &rarr;</a>
+            <a href="https://github.com/aleph-void/JeskolaBuzzVST/releases" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Releases &rarr;</a>
           </div>
         </div>
 
         <div class="project-body">
           <p class="project-description">
-            Access shipped the Virus TI with an x86 kernel extension that never made the jump to Apple Silicon, stranding the hardware on legacy machines. Aleph Virux rebuilds the entire stack from scratch in userspace &mdash; the whole USB stack talks to the device over IOUSBLib, so nothing loads into the kernel and there's no system extension to approve or reboot to install. A lightweight container app claims the Virus over USB and keeps its keepalive stream alive; the AUv3 extension and VST3 plugin then connect to it over XPC / IPC, so a single USB device can drive multiple plugin instances without a kernel driver in the middle. The on-screen editor &mdash; oscillators, filters, LFOs, the modulation matrix, arpeggiator, and the full effects section &mdash; is sourced from the documented page&nbsp;A/B parameter model, with multi-channel USB audio captured through CoreAudio and full note / CC / parameter control over the device's native vendor protocol. The macOS VST3 build passes the Steinberg SDK validator 47/47. Built clean-room from a reverse-engineered understanding of the protocol, with no vendor binaries required; the macOS driver and plugins do no networking and collect nothing.
+            Buzz machines are 32-bit Win32 plugin DLLs written for the Jeskola Buzz tracker, and a large library of them never had a path into modern hosts. BuzzBridge ships two VST3 plugins in one bundle &mdash; a Generator Bridge for instruments and an Effect Bridge for effects. In a 32-bit DAW the plugin loads the machine directly; in a 64-bit DAW it hands the machine to a separate 32-bit bridge host process, so legacy DLLs run under modern 64-bit hosts. Every Buzz machine parameter is mapped to an automatable VST3 parameter with the correct name, range and default, and MIDI note and CC input are fully supported. On Linux, the plugin cross-compiles from Linux and runs in native DAWs such as Bitwig, Reaper and Ardour through WINE and yabridge, which also isolates a crashing machine from the host. A Windows installer and CI builds are included.
           </p>
 
           <div class="stats-row">
             <div class="stat">
-              <div class="stat-value">47/47</div>
-              <div class="stat-label">VST3 Validator</div>
+              <div class="stat-value">2</div>
+              <div class="stat-label">VST3 Plugins</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">32 / 64</div>
+              <div class="stat-label">Bit DAW Support</div>
             </div>
             <div class="stat">
               <div class="stat-value">2</div>
-              <div class="stat-label">Platforms</div>
+              <div class="stat-label">Host Platforms</div>
             </div>
             <div class="stat">
-              <div class="stat-value">0</div>
-              <div class="stat-label">Kernel Extensions</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">3</div>
-              <div class="stat-label">Virus TI Models</div>
+              <div class="stat-value">1</div>
+              <div class="stat-label">Bundle</div>
             </div>
           </div>
 
           <div class="tech-tags">
             <span class="tag">C++</span>
-            <span class="tag">Swift</span>
-            <span class="tag">IOUSBLib</span>
-            <span class="tag">Core Audio</span>
-            <span class="tag">AUv3</span>
-            <span class="tag">VST3</span>
-            <span class="tag">XPC / IPC</span>
-            <span class="tag">USB Reverse Engineering</span>
-            <span class="tag">Kotlin</span>
+            <span class="tag">VST3 SDK</span>
+            <span class="tag">Win32</span>
+            <span class="tag">IPC / Bridge Process</span>
+            <span class="tag">CMake</span>
+            <span class="tag">llvm-mingw</span>
+            <span class="tag">WINE</span>
+            <span class="tag">yabridge</span>
+            <span class="tag">Inno Setup</span>
           </div>
 
           <div class="arch-section">
             <h4>Key Features</h4>
             <div class="arch-grid">
               <div class="arch-item">
-                <div class="arch-name">Userspace USB Driver</div>
-                <div class="arch-detail">IOUSBLib &middot; no kext, no DriverKit</div>
+                <div class="arch-name">Generator &amp; Effect Bridges</div>
+                <div class="arch-detail">Instruments and effects in one bundle</div>
               </div>
               <div class="arch-item">
-                <div class="arch-name">Container + Plugin over IPC</div>
-                <div class="arch-detail">One device, many plugin instances</div>
+                <div class="arch-name">64-bit Host Support</div>
+                <div class="arch-detail">32-bit bridge host process</div>
               </div>
               <div class="arch-item">
-                <div class="arch-name">AUv3 &amp; VST3</div>
-                <div class="arch-detail">Logic, GarageBand, Ableton Live, any host</div>
+                <div class="arch-name">Automatable Parameters</div>
+                <div class="arch-detail">Names, ranges &amp; defaults mapped</div>
               </div>
               <div class="arch-item">
-                <div class="arch-name">Original Control Surface</div>
-                <div class="arch-detail">Osc, filter, LFO, matrix, arp, FX</div>
+                <div class="arch-name">MIDI Input</div>
+                <div class="arch-detail">Notes and CCs</div>
               </div>
               <div class="arch-item">
-                <div class="arch-name">Audio &amp; MIDI Over USB</div>
-                <div class="arch-detail">CoreAudio capture &middot; vendor control protocol</div>
+                <div class="arch-name">Linux via yabridge</div>
+                <div class="arch-detail">Bitwig, Reaper, Ardour, Carla</div>
               </div>
               <div class="arch-item">
-                <div class="arch-name">Clean-Room Protocol</div>
-                <div class="arch-detail">No vendor binaries &middot; no data collection</div>
+                <div class="arch-name">Installer &amp; CI</div>
+                <div class="arch-detail">Inno Setup &middot; GitHub Actions</div>
               </div>
             </div>
           </div>
 
           <p style="font-size:0.85rem; color:var(--text-muted); font-family:'JetBrains Mono',monospace;">
-            Platforms: macOS on Apple Silicon (AUv3 / VST3) &middot; Android with USB host vendor access &nbsp;&mdash;&nbsp; requires an Access Virus TI Snow, Desktop, or Polar over USB. No iOS build &mdash; iOS forbids the vendor USB access this needs.
+            Platforms: Windows (32- and 64-bit VST3 hosts) &middot; Linux via WINE + yabridge &nbsp;&mdash;&nbsp; requires Buzz machine DLLs.
           </p>
         </div>
 
         <div class="screenshots-section">
-          <p class="screenshots-label">// Screenshots &mdash; macOS (AUv3 / VST3)</p>
+          <p class="screenshots-label">// Screenshots</p>
           <div class="screenshots-grid">
             <div class="screenshot-wrap">
-              <img src="assets/portfolio/virux-macos-screenshot0001.png" alt="Aleph Virux oscillator edit page running as an AUv3 plugin on macOS" loading="lazy">
-            </div>
-            <div class="screenshot-wrap">
-              <img src="assets/portfolio/virux-macos-screenshot0002.png" alt="Aleph Virux modulation matrix page on macOS" loading="lazy">
-            </div>
-            <div class="screenshot-wrap">
-              <img src="assets/portfolio/virux-macos-screenshot0003.png" alt="Aleph Virux effects section on macOS" loading="lazy">
-            </div>
-          </div>
-          <p class="screenshots-label" style="margin-top:1.5rem;">// Screenshots &mdash; Android</p>
-          <div class="screenshots-grid">
-            <div class="screenshot-wrap">
-              <img src="assets/portfolio/virux-android-screenshot0001.jpg" alt="Aleph Virux preset browser in the Android control app" loading="lazy">
-            </div>
-            <div class="screenshot-wrap">
-              <img src="assets/portfolio/virux-android-screenshot0002.jpg" alt="Aleph Virux arpeggiator page on Android" loading="lazy">
-            </div>
-            <div class="screenshot-wrap">
-              <img src="assets/portfolio/virux-android-screenshot0003.jpg" alt="Aleph Virux modulation matrix page on Android" loading="lazy">
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- CVOSC -->
-      <article class="project-entry">
-        <div class="project-header">
-          <div class="project-header-left">
-            <p class="project-label">// Commercial &mdash; Mobile / Audio &amp; Modular Synthesis</p>
-            <h2 class="project-title">CVOsc</h2>
-            <p class="project-tagline">A multichannel oscilloscope for iOS and Android that turns a phone or tablet plus a DC-coupled audio interface into a real-time monitor for control voltage and audio signals from Eurorack and modular synth systems.</p>
-          </div>
-          <div class="project-links">
-            <a href="https://cvosc.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Live Site &rarr;</a>
-            <a href="https://apps.apple.com/us/app/cvosc/id6767967087" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">App Store &rarr;</a>
-            <a href="https://play.google.com/store/apps/details?id=com.alephvoid.cvosc.android" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Google Play &rarr;</a>
-          </div>
-        </div>
-
-        <div class="project-body">
-          <p class="project-description">
-            CVOsc streams every input on a DC-offset-capable, class-compliant USB audio interface simultaneously &mdash; up to 16 channels at once &mdash; rendering each as its own live oscilloscope pane in a grid that adapts to the device (4&times;4 on tablets, 2&times;2 on phones). Each channel can run in either CV or audio-rate mode with independent vertical scale, DC offset, and time-base controls, plus autoscaling that fits the waveform to its observed range. A live tuning view uses autocorrelation for audio signals and V/oct mapping for CV, so pitched oscillators and control voltages can be read off directly. Selected channels can be captured to per-channel CAF / WAV files with a JSON sidecar and played back &mdash; with hardware-level DC-safety validation before any output is enabled, drawn from a built-in catalog of known DC-coupled interfaces. All processing and every recording stay local to the device; no data is collected.
-          </p>
-
-          <div class="stats-row">
-            <div class="stat">
-              <div class="stat-value">16</div>
-              <div class="stat-label">Input Channels</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">2</div>
-              <div class="stat-label">Platforms</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">3</div>
-              <div class="stat-label">View Modes</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">2</div>
-              <div class="stat-label">Signal Modes</div>
-            </div>
-          </div>
-
-          <div class="tech-tags">
-            <span class="tag">Swift</span>
-            <span class="tag">SwiftUI</span>
-            <span class="tag">Core Audio</span>
-            <span class="tag">Kotlin</span>
-            <span class="tag">Jetpack Compose</span>
-            <span class="tag">AAudio</span>
-            <span class="tag">USB Audio Class</span>
-            <span class="tag">DSP / Autocorrelation</span>
-          </div>
-
-          <div class="arch-section">
-            <h4>Key Features</h4>
-            <div class="arch-grid">
-              <div class="arch-item">
-                <div class="arch-name">16-Channel Monitoring</div>
-                <div class="arch-detail">Adaptive grid &middot; 4&times;4 tablet, 2&times;2 phone</div>
-              </div>
-              <div class="arch-item">
-                <div class="arch-name">CV &amp; Audio Modes</div>
-                <div class="arch-detail">Per-channel signal-type handling</div>
-              </div>
-              <div class="arch-item">
-                <div class="arch-name">Per-Channel Scaling</div>
-                <div class="arch-detail">Range, DC offset &amp; time base</div>
-              </div>
-              <div class="arch-item">
-                <div class="arch-name">Live Tuning</div>
-                <div class="arch-detail">Autocorrelation &middot; V/oct mapping</div>
-              </div>
-              <div class="arch-item">
-                <div class="arch-name">Recording &amp; Export</div>
-                <div class="arch-detail">Per-channel CAF / WAV + JSON sidecar</div>
-              </div>
-              <div class="arch-item">
-                <div class="arch-name">DC-Safe Playback</div>
-                <div class="arch-detail">Hardware validation before output</div>
-              </div>
-            </div>
-          </div>
-
-          <p style="font-size:0.85rem; color:var(--text-muted); font-family:'JetBrains Mono',monospace;">
-            Platforms: iOS 26.4+ (iPad &amp; iPhone) &middot; Android 7.0+ (SDK 24) &nbsp;&mdash;&nbsp; requires a class-compliant USB audio interface; DC-coupled interface needed for CV work
-          </p>
-        </div>
-
-        <div class="screenshots-section">
-          <p class="screenshots-label">// Screenshots &mdash; iOS</p>
-          <div class="screenshots-grid">
-            <div class="screenshot-wrap">
-              <img src="assets/portfolio/cvosc-ios-screenshot0001.png" alt="CVOsc on iPad showing a 16-channel oscilloscope grid with CV and audio waveforms" loading="lazy">
-            </div>
-            <div class="screenshot-wrap">
-              <img src="assets/portfolio/cvosc-ios-screenshot0002.png" alt="CVOsc iOS per-channel configuration sheet with signal type, range, and offset controls" loading="lazy">
-            </div>
-            <div class="screenshot-wrap">
-              <img src="assets/portfolio/cvosc-ios-screenshot0003.png" alt="CVOsc iOS recordings panel listing captured per-channel sessions for playback" loading="lazy">
-            </div>
-          </div>
-          <p class="screenshots-label" style="margin-top:1.5rem;">// Screenshots &mdash; Android</p>
-          <div class="screenshots-grid">
-            <div class="screenshot-wrap">
-              <img src="assets/portfolio/cvosc-android-screenshot0001.jpg" alt="CVOsc on Android showing the 16-channel oscilloscope grid and control sidebar" loading="lazy">
-            </div>
-            <div class="screenshot-wrap">
-              <img src="assets/portfolio/cvosc-android-screenshot0002.jpg" alt="CVOsc Android channel settings with CV/Audio signal type, autoscale, range, offset, and time base" loading="lazy">
-            </div>
-            <div class="screenshot-wrap">
-              <img src="assets/portfolio/cvosc-android-screenshot0003.jpg" alt="CVOsc Android recordings panel showing an ES-9 DC-coupled output and captured channels" loading="lazy">
+              <img src="https://raw.githubusercontent.com/aleph-void/JeskolaBuzzVST/HEAD/images/image.png" alt="BuzzBridge VST3 plugin hosting a Buzz machine with its parameters shown as VST3 sliders" loading="lazy">
             </div>
           </div>
         </div>
@@ -1059,209 +921,6 @@ title: Portfolio
             </div>
             <div class="screenshot-wrap">
               <img src="assets/portfolio/wasmasm-screenshot0002.png" alt="WASMASM disassembler interface showing hex input and decoded instructions" loading="lazy">
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- CSP TOOL -->
-      <article class="project-entry">
-        <div class="project-header">
-          <div class="project-header-left">
-            <p class="project-label">// Open Source &mdash; Browser Extension / Web Security</p>
-            <h2 class="project-title">CSP Tool</h2>
-            <p class="project-tagline">A Chrome and Firefox (MV3) browser extension for inspecting, editing, and overriding the Content Security Policy of any web page &mdash; at the meta-tag level or the HTTP header level.</p>
-          </div>
-          <div class="project-links">
-            <a href="https://csptool.net" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Live Site &rarr;</a>
-            <a href="https://github.com/nick-alephvoid/csptool" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">GitHub &rarr;</a>
-          </div>
-        </div>
-
-        <div class="project-body">
-          <p class="project-description">
-            CSP Tool captures CSP values from HTTP response headers via <code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;">chrome.webRequest</code>, parses them into individual directives, and lets you edit, toggle, add, or remove entries in a live editor. Changes can be applied two ways: by injecting a <code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;">&lt;meta http-equiv="Content-Security-Policy"&gt;</code> tag into the page DOM (good for loosening policies without a reload), or by installing a session-scoped <code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;">declarativeNetRequest</code> rule that rewrites the response header outright (full control, including tightening). Named configurations can be scoped to URL match patterns, every <code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;">securitypolicyviolation</code> event fired on the page is surfaced in real time, and the entire UI is localised into 15 languages.
-          </p>
-
-          <div class="stats-row">
-            <div class="stat">
-              <div class="stat-value">2</div>
-              <div class="stat-label">Browsers Supported</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">15</div>
-              <div class="stat-label">Locales</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">28</div>
-              <div class="stat-label">CSP Directives</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">3</div>
-              <div class="stat-label">Apply Modes</div>
-            </div>
-          </div>
-
-          <div class="tech-tags">
-            <span class="tag">Manifest V3</span>
-            <span class="tag">Vue 3</span>
-            <span class="tag">TypeScript</span>
-            <span class="tag">Vite</span>
-            <span class="tag">Pinia</span>
-            <span class="tag">vue-i18n</span>
-            <span class="tag">Tailwind CSS</span>
-            <span class="tag">DaisyUI</span>
-            <span class="tag">webextension-polyfill</span>
-            <span class="tag">declarativeNetRequest</span>
-            <span class="tag">Vitest</span>
-            <span class="tag">Playwright</span>
-          </div>
-
-          <div class="arch-section">
-            <h4>Key Features</h4>
-            <div class="arch-grid">
-              <div class="arch-item">
-                <div class="arch-name">Directive Editor</div>
-                <div class="arch-detail">Toggle, edit, add, or remove CSP directives</div>
-              </div>
-              <div class="arch-item">
-                <div class="arch-name">Header Override</div>
-                <div class="arch-detail">Rewrites CSP via declarativeNetRequest</div>
-              </div>
-              <div class="arch-item">
-                <div class="arch-name">Meta-Tag Mode</div>
-                <div class="arch-detail">Loosen CSP in-memory with no reload</div>
-              </div>
-              <div class="arch-item">
-                <div class="arch-name">NO-CSP Injection</div>
-                <div class="arch-detail">Add a CSP to pages that have none</div>
-              </div>
-              <div class="arch-item">
-                <div class="arch-name">Per-Site Configs</div>
-                <div class="arch-detail">Named bundles scoped by URL pattern</div>
-              </div>
-              <div class="arch-item">
-                <div class="arch-name">Live Violations</div>
-                <div class="arch-detail">securitypolicyviolation events captured</div>
-              </div>
-            </div>
-          </div>
-
-          <p style="font-size:0.85rem; color:var(--text-muted); font-family:'JetBrains Mono',monospace;">
-            Runtime: background service worker &middot; content script &middot; Vue 3 action popup
-          </p>
-        </div>
-
-        <div class="screenshots-section">
-          <p class="screenshots-label">// Screenshots</p>
-          <div class="screenshots-grid">
-            <div class="screenshot-wrap">
-              <img src="assets/portfolio/csptool-screenshot0001.png" alt="CSP Tool popup showing the CSP Editor tab with configuration ribbon and directive list" loading="lazy">
-            </div>
-            <div class="screenshot-wrap">
-              <img src="assets/portfolio/csptool-screenshot0002.png" alt="CSP Tool Errors tab displaying the empty violations state" loading="lazy">
-            </div>
-            <div class="screenshot-wrap">
-              <img src="assets/portfolio/csptool-screenshot0003.png" alt="CSP Tool Settings tab explaining meta-tag, override, and NO-CSP apply modes" loading="lazy">
-            </div>
-            <div class="screenshot-wrap">
-              <img src="assets/portfolio/csptool-screenshot0004.png" alt="CSP Tool Settings tab showing current page HTTP and meta CSP status" loading="lazy">
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- AI MUSIC FEEDBACK -->
-      <article class="project-entry">
-        <div class="project-header">
-          <div class="project-header-left">
-            <p class="project-label">// Open Source &mdash; AI / Desktop Application</p>
-            <h2 class="project-title">AI Music Feedback</h2>
-            <p class="project-tagline">A cross-platform desktop app that streams audio from your computer to the OpenAI Realtime API and delivers live AI feedback on your music — mix, dynamics, tonality, arrangement, and more.</p>
-          </div>
-          <div class="project-links">
-            <a href="https://github.com/aleph-void/AI-Music-Feedback" target="_blank" rel="noopener noreferrer" class="btn btn-primary">GitHub &rarr;</a>
-          </div>
-        </div>
-
-        <div class="project-body">
-          <p class="project-description">
-            AI Music Feedback captures PCM audio playing on your computer — from a DAW, streaming service, or any other source — and forwards it to OpenAI over a WebSocket in real time. When the AI detects a pause it responds with concise, actionable feedback. You can also ask questions by typing into the conversation or speaking through a separate microphone while the music stream is live. The full conversation is retained in a transcript view and can be exported to <code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;">.txt</code> or <code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;">.md</code>. API keys are stored encrypted in the OS keychain (macOS Keychain, Windows Credential Store) and the UI is fully localisable — new languages are added by dropping a single JSON file in <code style="font-family:'JetBrains Mono',monospace;font-size:0.85em;">src/i18n/</code>.
-          </p>
-
-          <div class="stats-row">
-            <div class="stat">
-              <div class="stat-value">~3,900</div>
-              <div class="stat-label">Lines of Code</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">400+</div>
-              <div class="stat-label">Test Cases</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">4</div>
-              <div class="stat-label">Build Targets</div>
-            </div>
-            <div class="stat">
-              <div class="stat-value">16</div>
-              <div class="stat-label">Test Suites</div>
-            </div>
-          </div>
-
-          <div class="tech-tags">
-            <span class="tag">Electron 33</span>
-            <span class="tag">Vue 3</span>
-            <span class="tag">TypeScript</span>
-            <span class="tag">electron-vite</span>
-            <span class="tag">OpenAI Realtime API</span>
-            <span class="tag">Web Audio API</span>
-            <span class="tag">AudioWorklet</span>
-            <span class="tag">vue-i18n</span>
-            <span class="tag">Vitest</span>
-            <span class="tag">electron-builder</span>
-            <span class="tag">GitHub Actions</span>
-          </div>
-
-          <div class="arch-section">
-            <h4>Key Features</h4>
-            <div class="arch-grid">
-              <div class="arch-item">
-                <div class="arch-name">Real-time Analysis</div>
-                <div class="arch-detail">PCM16 audio streamed via WebSocket</div>
-              </div>
-              <div class="arch-item">
-                <div class="arch-name">Any Audio Source</div>
-                <div class="arch-detail">DAW, browser, or any OS device</div>
-              </div>
-              <div class="arch-item">
-                <div class="arch-name">Voice &amp; Text Input</div>
-                <div class="arch-detail">Mic or typed questions while streaming</div>
-              </div>
-              <div class="arch-item">
-                <div class="arch-name">Transcript Export</div>
-                <div class="arch-detail">.txt / .md &middot; Ctrl/Cmd+E</div>
-              </div>
-              <div class="arch-item">
-                <div class="arch-name">Encrypted Key Storage</div>
-                <div class="arch-detail">OS keychain via Electron safeStorage</div>
-              </div>
-              <div class="arch-item">
-                <div class="arch-name">Internationalisation</div>
-                <div class="arch-detail">Drop-in JSON locale files</div>
-              </div>
-            </div>
-          </div>
-
-          <p style="font-size:0.85rem; color:var(--text-muted); font-family:'JetBrains Mono',monospace;">
-            Builds: Linux &middot; Windows &middot; macOS arm64 &middot; macOS x64 &nbsp;&mdash;&nbsp; released automatically via GitHub Actions on version tags
-          </p>
-        </div>
-
-        <div class="screenshots-section">
-          <p class="screenshots-label">// Screenshots</p>
-          <div class="screenshots-grid">
-            <div class="screenshot-wrap">
-              <img src="assets/portfolio/ai-music-feedback-screenshoot0001.png" alt="AI Music Feedback desktop app showing audio source selection, streaming controls, and live AI conversation transcript" loading="lazy">
             </div>
           </div>
         </div>

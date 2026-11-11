@@ -227,7 +227,7 @@ title: Aleph Void, LLC
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 1.5rem;
     }
 
@@ -283,6 +283,20 @@ title: Aleph Void, LLC
       position: relative;
     }
 
+    .service-link {
+      display: inline-block;
+      margin-top: 1rem;
+      color: var(--accent-light);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .service-link:hover {
+      color: #a78bfa;
+    }
+
     .service-card li::before {
       content: '';
       position: absolute;
@@ -292,6 +306,19 @@ title: Aleph Void, LLC
       height: 4px;
       border-radius: 50%;
       background: var(--accent-light);
+    }
+
+    /* Products */
+    .product-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+
+    .product-actions .service-link {
+      margin-top: 0;
     }
 
     /* Expertise */
@@ -553,6 +580,7 @@ title: Aleph Void, LLC
       </a>
       <ul>
         <li><a href="#services">Services</a></li>
+        <li><a href="#products">Products</a></li>
         <li><a href="#expertise">Expertise</a></li>
         <li><a href="/portfolio.html">Portfolio</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -613,6 +641,98 @@ title: Aleph Void, LLC
             <li>Technical consulting</li>
             <li>Architecture & design</li>
           </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">&#x1f4be;</div>
+          <h3>Firmware Emulation</h3>
+          <p>Virtual machines for microcontroller firmware, built from the binary alone.</p>
+          <ul>
+            <li>No source code required</li>
+            <li>CPU, memory & peripheral modeling</li>
+            <li>Browser (WebAssembly), desktop & CI</li>
+            <li>Debugging, tracing & damage detection</li>
+            <li>Update, backup & custom firmware tooling</li>
+          </ul>
+          <a href="/firmware-emulation.html" class="service-link">Learn more &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="products">
+    <div class="section-inner">
+      <p class="section-label">// Products</p>
+      <h2 class="section-title">What We Make</h2>
+      <p class="section-desc">Software built and supported by Aleph Void, LLC. <a href="/products.html" class="service-link" style="margin-top:0;">See all products &rarr;</a></p>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">&#x1f5a5;</div>
+          <h3>QEMU Manager</h3>
+          <p>QEMU, without the command line. Create, configure and run virtual machines on macOS, Linux &amp; Windows.</p>
+          <ul>
+            <li>18 guest architectures</li>
+            <li>UEFI &amp; TPM 2.0 for Windows&nbsp;11</li>
+            <li>Snapshots with memory, full &amp; linked clones</li>
+            <li>OVA / OVF import &amp; export</li>
+            <li>KVM, Hypervisor.framework &amp; WHPX acceleration</li>
+          </ul>
+          <div class="product-actions">
+            <a href="/products.html" class="service-link">Details &rarr;</a>
+            <a href="https://qemu-manager.alephvoid.com" target="_blank" rel="noopener noreferrer" class="service-link">qemu-manager.alephvoid.com &#x2197;</a>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">&#x1f4c8;</div>
+          <h3>CVOsc</h3>
+          <p>A multichannel oscilloscope for iOS and Android, for control voltage and audio from Eurorack and modular synths.</p>
+          <ul>
+            <li>Up to 16 channels at once</li>
+            <li>CV &amp; audio-rate modes</li>
+            <li>Live tuning (autocorrelation &amp; V/oct)</li>
+            <li>Per-channel CAF / WAV recording</li>
+            <li>DC-safe playback validation</li>
+          </ul>
+          <div class="product-actions">
+            <a href="/products.html" class="service-link">Details &rarr;</a>
+            <a href="https://cvosc.com" target="_blank" rel="noopener noreferrer" class="service-link">cvosc.com &#x2197;</a>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">&#x1f3b9;</div>
+          <h3>Morphix</h3>
+          <p>A morphing wavetable synth plugin, rebuilt from the binary of the lost 2005 <em>FSR Morphite</em>.</p>
+          <ul>
+            <li>AUv3, VST3 &amp; Standalone</li>
+            <li>64 recovered factory presets</li>
+            <li>State-variable filter, dual ADSR, tempo LFO</li>
+            <li>macOS, iOS, Windows &amp; Linux</li>
+            <li>No networking, no data collected</li>
+          </ul>
+          <div class="product-actions">
+            <a href="/products.html" class="service-link">Details &rarr;</a>
+            <a href="https://morphix.alephvoid.com" target="_blank" rel="noopener noreferrer" class="service-link">morphix.alephvoid.com &#x2197;</a>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">&#x1f50c;</div>
+          <h3>Aleph Virux</h3>
+          <p>A userspace driver and plugin that brings the Access Virus TI back to life on Apple Silicon and Android.</p>
+          <ul>
+            <li>No kext, no DriverKit</li>
+            <li>AUv3 &amp; VST3 control surface</li>
+            <li>Audio &amp; MIDI over USB</li>
+            <li>Virus TI Snow, Desktop &amp; Polar</li>
+            <li>Clean-room protocol implementation</li>
+          </ul>
+          <div class="product-actions">
+            <a href="/products.html" class="service-link">Details &rarr;</a>
+            <a href="https://virux.alephvoid.com" target="_blank" rel="noopener noreferrer" class="service-link">virux.alephvoid.com &#x2197;</a>
+          </div>
         </div>
       </div>
     </div>

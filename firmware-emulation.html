@@ -1,0 +1,1009 @@
+---
+title: Firmware Emulation
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Firmware Emulation — Aleph Void, LLC</title>
+  <meta name="description" content="Aleph Void, LLC builds virtual machines and emulators for microcontroller firmware — even when no source code is available.">
+  <link rel="icon" type="image/svg+xml" href="{{ site.url }}/assets/logo.svg">
+  <link rel="icon" type="image/png" href="{{ site.url }}/assets/logo.png" sizes="256x256">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #12121a;
+      --bg-card: #16161f;
+      --border: #1e1e2e;
+      --text-primary: #e4e4e7;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --accent: #6d28d9;
+      --accent-light: #8b5cf6;
+      --accent-glow: rgba(139, 92, 246, 0.15);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      background: rgba(10, 10, 15, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    nav .logo-mark {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    nav .logo-mark svg {
+      height: 56px;
+      width: 56px;
+      background-color: #fff;
+      border-radius: 8px;
+      border: 2px solid var(--accent);
+    }
+
+    nav .logo-mark span {
+      font-weight: 600;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--text-primary);
+    }
+
+    nav a.active {
+      color: var(--accent-light);
+    }
+
+    /* Page header */
+    .page-header {
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .page-header-inner {
+      position: relative;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .breadcrumb a {
+      color: var(--accent-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .breadcrumb a:hover {
+      color: #a78bfa;
+    }
+
+    .breadcrumb span {
+      color: var(--text-muted);
+    }
+
+    .page-header h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+    }
+
+    .page-header p {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    /* Project section */
+    .projects {
+      padding: 0 2rem 5rem;
+    }
+
+    .projects-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .project-entry {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg-card);
+      overflow: hidden;
+      margin-bottom: 3rem;
+    }
+
+    .project-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Project header bar */
+    .project-header {
+      padding: 2rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .project-header-left {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .project-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-light);
+      margin-bottom: 0.5rem;
+    }
+
+    .project-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-tagline {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 0.75rem;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.55rem 1.1rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--text-primary);
+      transform: translateY(-1px);
+    }
+
+    /* Project body */
+    .project-body {
+      padding: 2rem 2.5rem;
+    }
+
+    .project-description {
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+      max-width: 780px;
+    }
+
+    /* Stats row */
+    .stats-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .stat {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.9rem 1.25rem;
+      min-width: 140px;
+    }
+
+    .stat-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--accent-light);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    /* Tech tags */
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 4px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      color: var(--accent-light);
+    }
+
+    /* Architecture table */
+    .arch-section {
+      margin-bottom: 2rem;
+    }
+
+    .arch-section h4 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 0.5rem;
+    }
+
+    .arch-item {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.85rem;
+    }
+
+    .arch-item .arch-name {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .arch-item .arch-detail {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 0.15rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Screenshots */
+    .screenshots-section {
+      border-top: 1px solid var(--border);
+      padding: 2rem 2.5rem;
+    }
+
+    .screenshots-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .screenshots-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 1rem;
+    }
+
+    .screenshot-wrap {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .screenshot-wrap:hover {
+      border-color: var(--accent);
+    }
+
+    .screenshot-wrap img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* Footer */
+    footer {
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent-light);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #a78bfa;
+    }
+
+    /* Responsive */
+    @media (max-width: 767px) {
+      nav {
+        padding: 0.75rem 1.25rem;
+      }
+
+      nav ul {
+        gap: 1.25rem;
+      }
+
+      nav a {
+        font-size: 0.8rem;
+      }
+
+      nav .logo-mark span {
+        display: none;
+      }
+
+      nav .logo-mark svg {
+        height: 44px;
+        width: 44px;
+      }
+
+      .page-header {
+        padding: 6.5rem 1.25rem 2.5rem;
+      }
+
+      .projects {
+        padding: 0 1.25rem 3.5rem;
+      }
+
+      .project-header {
+        padding: 1.5rem;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+
+      .project-body {
+        padding: 1.5rem;
+      }
+
+      .screenshots-section {
+        padding: 1.5rem;
+      }
+
+      .screenshots-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-row {
+        gap: 0.75rem;
+      }
+
+      .stat {
+        min-width: 120px;
+      }
+    }
+
+    @media (max-width: 479px) {
+      nav {
+        padding: 0.65rem 1rem;
+      }
+
+      nav ul {
+        gap: 0.875rem;
+      }
+
+      nav .logo-mark svg {
+        height: 38px;
+        width: 38px;
+      }
+
+      .project-header,
+      .project-body,
+      .screenshots-section {
+        padding: 1.25rem;
+      }
+
+      footer {
+        padding: 1.5rem 1rem;
+      }
+    }
+
+    /* Service content */
+    .content-section {
+      padding: 0 2rem 4rem;
+    }
+
+    .content-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-light);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.4rem, 3vw, 1.85rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .section-desc {
+      color: var(--text-secondary);
+      max-width: 720px;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .offer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .offer-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .offer-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .offer-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+
+    .offer-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    /* Process steps */
+    .steps {
+      list-style: none;
+      counter-reset: step;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .steps li {
+      counter-increment: step;
+      position: relative;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem 1.25rem 4.25rem;
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+
+    .steps li::before {
+      content: counter(step, decimal-leading-zero);
+      position: absolute;
+      left: 1.5rem;
+      top: 1.2rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--accent-light);
+    }
+
+    .steps strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* Repository list */
+    .repo-list {
+      list-style: none;
+      border-top: 1px solid var(--border);
+      margin-bottom: 2rem;
+    }
+
+    .repo-list li {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .repo-list > li > a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--accent-light);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .repo-list a:hover {
+      color: #a78bfa;
+    }
+
+    .repo-list span a {
+      color: var(--accent-light);
+      text-decoration: none;
+    }
+
+    .repo-list span {
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      text-align: right;
+      line-height: 1.55;
+    }
+
+    .note {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+      line-height: 1.7;
+    }
+
+    /* Call to action */
+    .cta-box {
+      border: 1px solid var(--accent);
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent-glow), transparent 70%), var(--bg-card);
+      padding: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .cta-box h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .cta-box p {
+      color: var(--text-secondary);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 767px) {
+      .content-section {
+        padding: 0 1.25rem 3rem;
+      }
+
+      .offer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .repo-list li {
+        flex-direction: column;
+        gap: 0.35rem;
+      }
+
+      .repo-list > li > a {
+        white-space: normal;
+        word-break: break-all;
+      }
+
+      .repo-list span {
+        text-align: left;
+      }
+
+      .cta-box {
+        padding: 1.75rem;
+      }
+    }
+
+    @media (max-width: 479px) {
+      .content-section {
+        padding: 0 1rem 2.5rem;
+      }
+
+      .steps li {
+        padding: 1.1rem 1.1rem 1.1rem 3.5rem;
+      }
+
+      .steps li::before {
+        left: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    <symbol id="logo-symbol" viewBox="0 0 256 256">
+      <path fill="#000000" fill-rule="evenodd" d="M 74 24 L 69 29 L 65 36 L 65 39 L 64 40 L 65 49 L 67 52 L 67 54 L 69 56 L 72 62 L 76 66 L 76 67 L 91 82 L 93 83 L 93 84 L 81 92 L 70 103 L 65 113 L 65 124 L 70 134 L 70 136 L 72 139 L 72 142 L 73 143 L 73 145 L 70 152 L 66 156 L 66 162 L 67 164 L 103 164 L 108 155 L 109 147 L 108 146 L 108 143 L 106 138 L 101 131 L 89 118 L 85 110 L 85 104 L 88 98 L 93 93 L 98 90 L 100 90 L 134 125 L 134 126 L 140 132 L 140 133 L 153 148 L 165 165 L 168 164 L 173 159 L 176 154 L 176 152 L 177 151 L 177 139 L 172 130 L 157 113 L 153 107 L 152 102 L 151 101 L 151 89 L 152 88 L 152 84 L 153 83 L 154 77 L 156 73 L 162 67 L 168 67 L 169 68 L 171 68 L 173 70 L 175 69 L 175 65 L 176 64 L 176 43 L 174 39 L 168 35 L 159 34 L 158 32 L 157 33 L 148 32 L 144 30 L 141 27 L 141 23 L 139 23 L 134 29 L 131 36 L 131 42 L 130 43 L 131 54 L 133 58 L 137 62 L 141 64 L 144 64 L 145 66 L 146 65 L 150 65 L 151 66 L 151 68 L 147 72 L 143 78 L 143 80 L 141 83 L 141 86 L 140 87 L 140 92 L 139 93 L 137 93 L 100 54 L 100 53 L 95 48 L 95 47 L 85 35 L 79 26 L 78 23 Z"/>
+      <text x="186" y="176" font-family="'EB Garamond', Georgia, serif" font-size="18" fill="#000000">0</text>
+      <text x="128" y="236" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="20" fill="#000000">Aleph Void</text>
+    </symbol>
+  </svg>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="logo-mark">
+        <svg aria-label="Aleph Void"><use href="#logo-symbol"/></svg>
+        <span>Aleph Void</span>
+      </a>
+      <ul>
+        <li><a href="/#services" class="active">Services</a></li>
+        <li><a href="/products.html">Products</a></li>
+        <li><a href="/#expertise">Expertise</a></li>
+        <li><a href="/portfolio.html">Portfolio</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="breadcrumb">
+        <a href="/">Home</a>
+        <span>/</span>
+        <a href="/#services">Services</a>
+        <span>/</span>
+        <span>Firmware Emulation</span>
+      </div>
+      <h1>Firmware Emulation</h1>
+      <p>We build virtual machines for microcontroller firmware, even when no source code exists. Your device's binary boots and runs in software, with no hardware on the bench.</p>
+    </div>
+  </div>
+
+  <section class="content-section">
+    <div class="content-inner">
+      <p class="section-label">// The Service</p>
+      <h2 class="section-title">Your Device, Running in Software</h2>
+      <p class="section-desc">
+        Most embedded products ship as a single firmware image on an MCU. The source may be lost, owned by a vendor, or never available. We reverse engineer the binary and the board it expects: the CPU core, memory map, interrupt controller, and the peripherals the firmware talks to. Then we model all of it, so the original, unmodified firmware boots and runs as it would on the real device. The result is a debuggable, scriptable, repeatable copy of your hardware.
+      </p>
+
+      <div class="offer-grid">
+        <div class="offer-card">
+          <h3>No Source Code Required</h3>
+          <p>We start from the shipped binary (a <code>.bin</code>, <code>.elf</code>, vendor update package, or a flash dump) and recover the hardware interface the firmware depends on.</p>
+        </div>
+        <div class="offer-card">
+          <h3>Full Peripheral Models</h3>
+          <p>We model GPIO, timers, DMA, SPI flash, USB, displays, LEDs, buttons, encoders and other I/O closely enough for real firmware to drive them, including interrupts and exceptions.</p>
+        </div>
+        <div class="offer-card">
+          <h3>Debugging &amp; Instrumentation</h3>
+          <p>You get single-stepping, breakpoints, register and memory inspection, and instruction traces, plus detectors that flag dangerous behavior such as unexpected flash writes before it reaches real hardware.</p>
+        </div>
+        <div class="offer-card">
+          <h3>Browser, Desktop &amp; CI</h3>
+          <p>The emulator can run in the browser through WebAssembly, as a native app, or headless in CI, so every firmware build gets tested automatically without a device attached.</p>
+        </div>
+        <div class="offer-card">
+          <h3>Update &amp; Backup Tooling</h3>
+          <p>We document the vendor's update and backup protocols, rebuild them as tools, and run them end to end against the emulator before anyone touches a physical unit.</p>
+        </div>
+        <div class="offer-card">
+          <h3>Specs for Custom Firmware</h3>
+          <p>We write the recovered hardware contract up as a specification with conformance tests, so independent developers can write new firmware without vendor code.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="content-inner">
+      <p class="section-label">// Use Cases</p>
+      <h2 class="section-title">Why Emulate Firmware?</h2>
+      <div class="offer-grid">
+        <div class="offer-card">
+          <h3>Security Research</h3>
+          <p>Fuzz, trace, and analyze firmware at scale. Inspect any instruction or memory access without JTAG, and without risking a scarce device.</p>
+        </div>
+        <div class="offer-card">
+          <h3>Legacy &amp; Discontinued Products</h3>
+          <p>Keep hardware alive after the vendor has moved on. Preserve its behavior, test repairs, and build replacement firmware.</p>
+        </div>
+        <div class="offer-card">
+          <h3>Development &amp; QA</h3>
+          <p>Give every developer a device on their own machine, catch regressions in CI, and check updates against every firmware version before release.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="content-inner">
+      <p class="section-label">// Process</p>
+      <h2 class="section-title">How an Engagement Works</h2>
+      <ol class="steps">
+        <li><strong>Acquire the firmware.</strong> We work from an update file, a flash dump, or an image you provide, and identify the MCU core, memory layout, vector table, and packaging format.</li>
+        <li><strong>Recover the board.</strong> Through static and dynamic analysis we map every peripheral register the firmware touches and work out what it expects back: clocks, interrupts, DMA, buses, and external parts.</li>
+        <li><strong>Build the virtual machine.</strong> We run the real CPU instruction set against peripheral models. Unknown hardware accesses stop execution and are reported instead of failing silently, so gaps are always visible.</li>
+        <li><strong>Prove it against real behavior.</strong> We exercise boot, user input, display output, storage, USB, and update paths, and write down what has been verified and what is still approximate.</li>
+        <li><strong>Deliver the tooling.</strong> You get the emulator, debugging and test tools, documentation, and optionally a specification and validation suite for custom firmware.</li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="projects">
+    <div class="projects-inner">
+
+      <!-- SQ-64 -->
+      <article class="project-entry">
+        <div class="project-header">
+          <div class="project-header-left">
+            <p class="project-label">// Case Study &mdash; Firmware Emulation / Hardware Sequencer</p>
+            <h2 class="project-title">SQ-64 Emulator &amp; Device Tools</h2>
+            <p class="project-tagline">A complete virtual Korg SQ-64 hardware sequencer, built without vendor source code. The stock ARM firmware boots and runs in the browser, and an open ecosystem of custom firmware has grown up around it.</p>
+          </div>
+          <div class="project-links">
+            <a href="https://sq64.alephvoid.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Try It Live &rarr;</a>
+            <a href="https://github.com/aleph-void/Korg-SQ-64-Emulator" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">GitHub &rarr;</a>
+          </div>
+        </div>
+
+        <div class="project-body">
+          <p class="project-description">
+            The SQ-64 emulator runs the sequencer's ARM Thumb firmware on a Cortex-M7 CPU model, compiled to WebAssembly so it runs entirely in the browser with no server, account, or vendor firmware bundled. Every part of the front panel is connected through modeled peripherals: the 64 pads, 21 other buttons, six quadrature encoders, LEDs driven by the firmware's PWM, and the 256&times;64 display fed by DMA. It also models the SPI NOR flash, USB enumeration, and CV, gate and trigger outputs. Firmware updates in both directions (stock to custom and back) complete all 224 packets with byte-exact installed code. Backup and restore read back cleanly after a shutdown and cold restart. The same workbench also works with a physical SQ-64 over Web MIDI, adds a step debugger with breakpoints and traces, and has critical damage detectors that halt any image which would write to protected flash or issue forbidden SPI commands.
+          </p>
+
+          <div class="stats-row">
+            <div class="stat">
+              <div class="stat-value">0</div>
+              <div class="stat-label">Lines of Vendor Source</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">85</div>
+              <div class="stat-label">Panel Buttons Modeled</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">88</div>
+              <div class="stat-label">Spec Requirements</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">3</div>
+              <div class="stat-label">Original Firmwares</div>
+            </div>
+          </div>
+
+          <div class="tech-tags">
+            <span class="tag">ARM Cortex-M7</span>
+            <span class="tag">Unicorn Engine</span>
+            <span class="tag">WebAssembly</span>
+            <span class="tag">Vue 3</span>
+            <span class="tag">Python</span>
+            <span class="tag">C</span>
+            <span class="tag">Web MIDI / SysEx</span>
+            <span class="tag">USB</span>
+            <span class="tag">SPI NOR Flash</span>
+            <span class="tag">Playwright</span>
+          </div>
+
+          <div class="arch-section">
+            <h4>What's Modeled</h4>
+            <div class="arch-grid">
+              <div class="arch-item">
+                <div class="arch-name">CPU</div>
+                <div class="arch-detail">Cortex-M7 &middot; FPU &middot; IRQs &middot; MSP/PSP</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Memory</div>
+                <div class="arch-detail">Flash aliases &middot; SRAM &middot; ELF/VSB loaders</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">SPI NOR</div>
+                <div class="arch-detail">16 MiB &middot; program &middot; erase</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">USB</div>
+                <div class="arch-detail">Enumeration &middot; update &middot; backup</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Panel</div>
+                <div class="arch-detail">85 buttons &middot; 6 encoders &middot; LEDs</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Display</div>
+                <div class="arch-detail">256&times;64 via DMA</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">CV / Gate / Sync</div>
+                <div class="arch-detail">Indicators &middot; gates &middot; triggers</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Power</div>
+                <div class="arch-detail">Power button &middot; power-hold line</div>
+              </div>
+            </div>
+          </div>
+
+          <p class="note">
+            An independent project, not affiliated with or endorsed by Korg. The emulator is an experimental software board model, not a hardware certification. It is not cycle-accurate, and analog outputs and electrical timing are outside its scope.
+          </p>
+        </div>
+
+        <div class="screenshots-section">
+          <p class="screenshots-label">// Public Repositories</p>
+          <ul class="repo-list">
+            <li>
+              <a href="https://github.com/aleph-void/Korg-SQ-64-Emulator" target="_blank" rel="noopener noreferrer">Korg-SQ-64-Emulator</a>
+              <span>The browser and native emulator, plus firmware updater and backup/restore tools. Runs at <a href="https://sq64.alephvoid.com" target="_blank" rel="noopener noreferrer">sq64.alephvoid.com</a>.</span>
+            </li>
+            <li>
+              <a href="https://github.com/aleph-void/Korg-SQ-64-Custom-Firmware-Spec" target="_blank" rel="noopener noreferrer">Korg-SQ-64-Custom-Firmware-Spec</a>
+              <span>An independent firmware specification and conformance suite: 88 requirements, 389 named cases, and validators for images, updates, and backups.</span>
+            </li>
+            <li>
+              <a href="https://github.com/aleph-void/Korg-SQ-64-Custom-Firmware-Repo" target="_blank" rel="noopener noreferrer">Korg-SQ-64-Custom-Firmware-Repo</a>
+              <span>A community firmware registry. CI builds each entry from source, validates it against the spec, and runs it headless in the emulator before publishing.</span>
+            </li>
+            <li>
+              <a href="https://github.com/aleph-void/Korg-SQ-64-Euclidean-Firmware" target="_blank" rel="noopener noreferrer">Korg-SQ-64-Euclidean-Firmware</a>
+              <span>Original firmware that turns the SQ-64 into a four-track Euclidean rhythm sequencer. It is also the reference build for the registry.</span>
+            </li>
+            <li>
+              <a href="https://github.com/aleph-void/Korg-SQ-64-Custom-Firmware-LFOs" target="_blank" rel="noopener noreferrer">Korg-SQ-64-Custom-Firmware-LFOs</a>
+              <span>Original firmware that turns the SQ-64 into a four-channel bank of tempo-synced LFOs with CV and MIDI CC outputs.</span>
+            </li>
+            <li>
+              <a href="https://github.com/aleph-void/Korg-SQ-64-Custom-Firmware-Aleph-Void-Official" target="_blank" rel="noopener noreferrer">Korg-SQ-64-Custom-Firmware-Aleph-Void-Official</a>
+              <span>The official Aleph Void firmware. It combines the Euclidean and LFO engines, switchable per track on one shared transport.</span>
+            </li>
+          </ul>
+          <p class="note">
+            The custom firmwares contain no vendor source code, no decompiled vendor functions, and no bytes copied from stock firmware. They were written only from the published spec and tested against the emulator.
+          </p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <section class="content-section">
+    <div class="content-inner">
+      <div class="cta-box">
+        <div>
+          <h2>Have firmware you need to run without the hardware?</h2>
+          <p>Tell us about the device, the MCU if you know it, and what you need the emulator to do. We'll reply with a scoping assessment.</p>
+        </div>
+        <a href="mailto:contact@alephvoid.com?subject=Firmware%20Emulation" class="btn btn-primary">contact@alephvoid.com &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p style="margin-bottom:0.5rem;">
+      <a href="/">&#8592; Back to Aleph Void, LLC</a>
+    </p>
+    &copy; {{ site.time | date: '%Y' }} Aleph Void, LLC. All rights reserved.
+  </footer>
+
+</body>
+</html>

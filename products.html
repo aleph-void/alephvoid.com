@@ -1,0 +1,1006 @@
+---
+title: Products
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products — Aleph Void, LLC</title>
+  <meta name="description" content="Software products built and sold by Aleph Void, LLC.">
+  <link rel="icon" type="image/svg+xml" href="{{ site.url }}/assets/logo.svg">
+  <link rel="icon" type="image/png" href="{{ site.url }}/assets/logo.png" sizes="256x256">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #12121a;
+      --bg-card: #16161f;
+      --border: #1e1e2e;
+      --text-primary: #e4e4e7;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --accent: #6d28d9;
+      --accent-light: #8b5cf6;
+      --accent-glow: rgba(139, 92, 246, 0.15);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      background: rgba(10, 10, 15, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    nav .logo-mark {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    nav .logo-mark svg {
+      height: 56px;
+      width: 56px;
+      background-color: #fff;
+      border-radius: 8px;
+      border: 2px solid var(--accent);
+    }
+
+    nav .logo-mark span {
+      font-weight: 600;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--text-primary);
+    }
+
+    nav a.active {
+      color: var(--accent-light);
+    }
+
+    /* Page header */
+    .page-header {
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .page-header-inner {
+      position: relative;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .breadcrumb a {
+      color: var(--accent-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .breadcrumb a:hover {
+      color: #a78bfa;
+    }
+
+    .breadcrumb span {
+      color: var(--text-muted);
+    }
+
+    .page-header h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+    }
+
+    .page-header p {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    /* Project section */
+    .projects {
+      padding: 0 2rem 5rem;
+    }
+
+    .projects-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .project-entry {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg-card);
+      overflow: hidden;
+      margin-bottom: 3rem;
+    }
+
+    .project-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Project header bar */
+    .project-header {
+      padding: 2rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .project-header-left {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .project-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-light);
+      margin-bottom: 0.5rem;
+    }
+
+    .project-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-tagline {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 0.75rem;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.55rem 1.1rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--text-primary);
+      transform: translateY(-1px);
+    }
+
+    /* Project body */
+    .project-body {
+      padding: 2rem 2.5rem;
+    }
+
+    .project-description {
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+      max-width: 780px;
+    }
+
+    /* Stats row */
+    .stats-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .stat {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.9rem 1.25rem;
+      min-width: 140px;
+    }
+
+    .stat-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--accent-light);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    /* Tech tags */
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 4px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      color: var(--accent-light);
+    }
+
+    /* Architecture table */
+    .arch-section {
+      margin-bottom: 2rem;
+    }
+
+    .arch-section h4 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 0.5rem;
+    }
+
+    .arch-item {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.85rem;
+    }
+
+    .arch-item .arch-name {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .arch-item .arch-detail {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 0.15rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Screenshots */
+    .screenshots-section {
+      border-top: 1px solid var(--border);
+      padding: 2rem 2.5rem;
+    }
+
+    .screenshots-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .screenshots-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 1rem;
+    }
+
+    .screenshot-wrap {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .screenshot-wrap:hover {
+      border-color: var(--accent);
+    }
+
+    .screenshot-wrap img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* Footer */
+    footer {
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent-light);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #a78bfa;
+    }
+
+    /* Responsive */
+    @media (max-width: 767px) {
+      nav {
+        padding: 0.75rem 1.25rem;
+      }
+
+      nav ul {
+        gap: 1.25rem;
+      }
+
+      nav a {
+        font-size: 0.8rem;
+      }
+
+      nav .logo-mark span {
+        display: none;
+      }
+
+      nav .logo-mark svg {
+        height: 44px;
+        width: 44px;
+      }
+
+      .page-header {
+        padding: 6.5rem 1.25rem 2.5rem;
+      }
+
+      .projects {
+        padding: 0 1.25rem 3.5rem;
+      }
+
+      .project-header {
+        padding: 1.5rem;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+
+      .project-body {
+        padding: 1.5rem;
+      }
+
+      .screenshots-section {
+        padding: 1.5rem;
+      }
+
+      .screenshots-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-row {
+        gap: 0.75rem;
+      }
+
+      .stat {
+        min-width: 120px;
+      }
+    }
+
+    @media (max-width: 479px) {
+      nav {
+        padding: 0.65rem 1rem;
+      }
+
+      nav ul {
+        gap: 0.875rem;
+      }
+
+      nav .logo-mark svg {
+        height: 38px;
+        width: 38px;
+      }
+
+      .project-header,
+      .project-body,
+      .screenshots-section {
+        padding: 1.25rem;
+      }
+
+      footer {
+        padding: 1.5rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    <symbol id="logo-symbol" viewBox="0 0 256 256">
+      <path fill="#000000" fill-rule="evenodd" d="M 74 24 L 69 29 L 65 36 L 65 39 L 64 40 L 65 49 L 67 52 L 67 54 L 69 56 L 72 62 L 76 66 L 76 67 L 91 82 L 93 83 L 93 84 L 81 92 L 70 103 L 65 113 L 65 124 L 70 134 L 70 136 L 72 139 L 72 142 L 73 143 L 73 145 L 70 152 L 66 156 L 66 162 L 67 164 L 103 164 L 108 155 L 109 147 L 108 146 L 108 143 L 106 138 L 101 131 L 89 118 L 85 110 L 85 104 L 88 98 L 93 93 L 98 90 L 100 90 L 134 125 L 134 126 L 140 132 L 140 133 L 153 148 L 165 165 L 168 164 L 173 159 L 176 154 L 176 152 L 177 151 L 177 139 L 172 130 L 157 113 L 153 107 L 152 102 L 151 101 L 151 89 L 152 88 L 152 84 L 153 83 L 154 77 L 156 73 L 162 67 L 168 67 L 169 68 L 171 68 L 173 70 L 175 69 L 175 65 L 176 64 L 176 43 L 174 39 L 168 35 L 159 34 L 158 32 L 157 33 L 148 32 L 144 30 L 141 27 L 141 23 L 139 23 L 134 29 L 131 36 L 131 42 L 130 43 L 131 54 L 133 58 L 137 62 L 141 64 L 144 64 L 145 66 L 146 65 L 150 65 L 151 66 L 151 68 L 147 72 L 143 78 L 143 80 L 141 83 L 141 86 L 140 87 L 140 92 L 139 93 L 137 93 L 100 54 L 100 53 L 95 48 L 95 47 L 85 35 L 79 26 L 78 23 Z"/>
+      <text x="186" y="176" font-family="'EB Garamond', Georgia, serif" font-size="18" fill="#000000">0</text>
+      <text x="128" y="236" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="20" fill="#000000">Aleph Void</text>
+    </symbol>
+  </svg>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="logo-mark">
+        <svg aria-label="Aleph Void"><use href="#logo-symbol"/></svg>
+        <span>Aleph Void</span>
+      </a>
+      <ul>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/products.html" class="active">Products</a></li>
+        <li><a href="/#expertise">Expertise</a></li>
+        <li><a href="/portfolio.html">Portfolio</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="breadcrumb">
+        <a href="/">Home</a>
+        <span>/</span>
+        <span>Products</span>
+      </div>
+      <h1>Products</h1>
+      <p>Software built and supported by Aleph Void, LLC — virtualization, audio plugins and drivers, and mobile instrumentation.</p>
+    </div>
+  </div>
+
+  <div class="projects">
+    <div class="projects-inner">
+
+      <!-- QEMU MANAGER -->
+      <article class="project-entry">
+        <div class="project-header">
+          <div class="project-header-left">
+            <p class="project-label">// Commercial &mdash; Desktop / Virtualization</p>
+            <h2 class="project-title">QEMU Manager</h2>
+            <p class="project-tagline">QEMU, without the command line &mdash; a desktop app for macOS, Linux &amp; Windows that creates, configures and runs QEMU virtual machines, from a Windows&nbsp;11 guest with TPM&nbsp;2.0 to a RISC-V or IBM&nbsp;Z board.</p>
+          </div>
+          <div class="project-links">
+            <a href="https://qemu-manager.alephvoid.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Live Site &rarr;</a>
+          </div>
+        </div>
+
+        <div class="project-body">
+          <p class="project-description">
+            QEMU can emulate almost anything, but driving it means hand-writing long command lines. QEMU Manager builds a VM from a Proxmox-style hardware list &mdash; CPUs and memory, BIOS or UEFI, virtio, NVMe, SATA, IDE and USB disks, ISOs, boot order, sound cards, serial ports and host USB devices &mdash; then starts it and shows it booting in an embedded noVNC console. It drives the QEMU you already have installed, supervising QEMU, swtpm and virtiofsd directly (never through a shell) and controlling the running machine over QMP. Nothing is hidden: the exact QEMU command line for any VM is one click away, and you can add your own arguments. Every VM is a self-contained folder holding its configuration, qcow2 disks, UEFI variables and TPM state, so it can be copied, backed up or moved like any other folder. One license covers every platform; the app collects no analytics or telemetry.
+          </p>
+
+          <div class="stats-row">
+            <div class="stat">
+              <div class="stat-value">18</div>
+              <div class="stat-label">Guest Architectures</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">3</div>
+              <div class="stat-label">Host Platforms</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">10</div>
+              <div class="stat-label">Machines per License</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">0</div>
+              <div class="stat-label">Telemetry</div>
+            </div>
+          </div>
+
+          <div class="tech-tags">
+            <span class="tag">QEMU</span>
+            <span class="tag">QMP</span>
+            <span class="tag">KVM</span>
+            <span class="tag">Hypervisor.framework</span>
+            <span class="tag">WHPX</span>
+            <span class="tag">swtpm</span>
+            <span class="tag">UEFI / OVMF</span>
+            <span class="tag">noVNC</span>
+            <span class="tag">VFIO</span>
+          </div>
+
+          <div class="arch-section">
+            <h4>Key Features</h4>
+            <div class="arch-grid">
+              <div class="arch-item">
+                <div class="arch-name">UEFI &amp; TPM 2.0</div>
+                <div class="arch-detail">Windows&nbsp;11 &amp; BitLocker via swtpm</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Snapshots With Memory</div>
+                <div class="arch-detail">Restore resumes exactly where it was</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Full &amp; Linked Clones</div>
+                <div class="arch-detail">Copy-on-write overlays &middot; near-zero space</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">OVA / OVF Appliances</div>
+                <div class="arch-detail">Import from VMware &amp; VirtualBox &middot; round-trip export</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Hardware Acceleration</div>
+                <div class="arch-detail">KVM, HVF, WHPX &middot; TCG fallback</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">PCI &amp; USB Passthrough</div>
+                <div class="arch-detail">VFIO with IOMMU group checks</div>
+              </div>
+            </div>
+          </div>
+
+          <p style="font-size:0.85rem; color:var(--text-muted); font-family:'JetBrains Mono',monospace;">
+            Platforms: macOS (Apple Silicon &amp; Intel) &middot; Windows (x64 &amp; ARM64) &middot; Linux (x64 &amp; ARM64) &nbsp;&mdash;&nbsp; requires a separately installed QEMU. Guests: x86, ARM, RISC-V, POWER, MIPS, LoongArch, IBM&nbsp;Z, SPARC, m68k, Alpha &amp; PA-RISC.
+          </p>
+        </div>
+
+        <div class="screenshots-section">
+          <p class="screenshots-label">// Screenshots</p>
+          <div class="screenshots-grid">
+            <div class="screenshot-wrap">
+              <img src="https://qemu-manager.alephvoid.com/assets/screenshots/console.png" alt="QEMU Manager embedded console showing Alpine Linux booting, with the VM library in the sidebar" loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+              <img src="https://qemu-manager.alephvoid.com/assets/screenshots/hardware.png" alt="QEMU Manager hardware list for a Windows 11 VM with UEFI, TPM 2.0 and an NVMe disk" loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+              <img src="https://qemu-manager.alephvoid.com/assets/screenshots/snapshots.png" alt="QEMU Manager snapshots tab with two live snapshots that include memory" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- MORPHIX -->
+      <article class="project-entry">
+        <div class="project-header">
+          <div class="project-header-left">
+            <p class="project-label">// Open Source &mdash; Audio / Reverse Engineering &amp; Synth Plugin Development</p>
+            <h2 class="project-title">Morphix</h2>
+            <p class="project-tagline">A polyphonic morphing wavetable synthesizer plugin (AUv3 / VST3 / Standalone) &mdash; a from-scratch reconstruction of the lost 2005 <em>FSR Morphite</em>, with its architecture, parameters, and complete 64-patch factory bank recovered from the original binary and rebuilt with JUCE.</p>
+          </div>
+          <div class="project-links">
+            <a href="https://morphix.alephvoid.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Live Site &rarr;</a>
+            <a href="https://github.com/aleph-void/morphix.alephvoid.com" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">GitHub &rarr;</a>
+          </div>
+        </div>
+
+        <div class="project-body">
+          <p class="project-description">
+            The <em>FSR Morphite</em> was a 2005 Windows VST whose source code was lost. Morphix rebuilds it from scratch: its signal path, all 29 parameters, and the full 64-patch factory bank were reverse-engineered from the original binary and re-implemented with JUCE as a modern, multi-architecture plugin. The voice is a single morphing wavetable oscillator &mdash; one morph control sweeps continuously through the table, smoothly blending one waveform into the next &mdash; feeding a state-variable filter with its own ADSR, an amp VCA, and a stereo flanger on the output, with a tempo-syncable LFO routable to morph and cutoff. The recovered factory bank ships as standard Steinberg <code>.vstpreset</code> files (also exposed as host programs), and users can import and export their own from the UI. Morphix does no networking and collects nothing &mdash; no account, no telemetry, everything runs locally.
+          </p>
+
+          <div class="stats-row">
+            <div class="stat">
+              <div class="stat-value">64</div>
+              <div class="stat-label">Factory Presets</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">29</div>
+              <div class="stat-label">Parameters</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">4</div>
+              <div class="stat-label">Platforms</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">0</div>
+              <div class="stat-label">Data Collected</div>
+            </div>
+          </div>
+
+          <div class="tech-tags">
+            <span class="tag">C++</span>
+            <span class="tag">JUCE</span>
+            <span class="tag">AUv3</span>
+            <span class="tag">VST3</span>
+            <span class="tag">Standalone</span>
+            <span class="tag">Wavetable Synthesis</span>
+            <span class="tag">DSP</span>
+            <span class="tag">Binary Reverse Engineering</span>
+          </div>
+
+          <div class="arch-section">
+            <h4>Key Features</h4>
+            <div class="arch-grid">
+              <div class="arch-item">
+                <div class="arch-name">Morphing Wavetable Oscillator</div>
+                <div class="arch-detail">One morph control sweeps the table</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">State-Variable Filter</div>
+                <div class="arch-detail">Cutoff, reso, filter env, key-track</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Dual ADSR &amp; Tempo LFO</div>
+                <div class="arch-detail">Amp + filter envelopes &middot; synced LFO</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Stereo Flanger</div>
+                <div class="arch-detail">Width and motion on the output</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">64 Recovered Presets</div>
+                <div class="arch-detail">.vstpreset files &middot; import / export</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">AUv3, VST3 &amp; Standalone</div>
+                <div class="arch-detail">Logic, GarageBand, Ableton, any host</div>
+              </div>
+            </div>
+          </div>
+
+          <p style="font-size:0.85rem; color:var(--text-muted); font-family:'JetBrains Mono',monospace;">
+            Platforms: macOS (universal arm64 + x86_64) &middot; iOS / iPadOS (AUv3, iOS 13+) &middot; Windows (x64 + ARM64) &middot; Linux (x86_64 + aarch64). An independent reconstruction &mdash; the original <em>FSR Morphite</em> is referenced only as the historical source of the recovered design.
+          </p>
+        </div>
+
+        <div class="screenshots-section">
+          <p class="screenshots-label">// Screenshots &mdash; macOS (AUv3 / VST3 / Standalone)</p>
+          <div class="screenshots-grid">
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/morphix-macos-screenshot0001.png" alt="Morphix full plugin window on macOS showing the oscillator, LFO, filter, envelopes, pitch, and output sections" loading="lazy">
+            </div>
+          </div>
+          <p class="screenshots-label" style="margin-top:1.5rem;">// Screenshots &mdash; iOS / iPadOS</p>
+          <div class="screenshots-grid">
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/morphix-ios-screenshot0001.png" alt="Morphix on iPad showing the oscillator, LFO, filter, and pitch sections" loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/morphix-ios-screenshot0002.png" alt="Morphix on iPad showing the amp and filter envelopes, pitch, and output sections over the keyboard" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- VIRUX -->
+      <article class="project-entry">
+        <div class="project-header">
+          <div class="project-header-left">
+            <p class="project-label">// Open Source &mdash; Audio / Reverse Engineering &amp; Driver Development</p>
+            <h2 class="project-title">Aleph Virux</h2>
+            <p class="project-tagline">A userspace driver and synth plugin that brings the Access Virus TI (Snow, Desktop, Polar) back to life on Apple Silicon Macs and Android &mdash; no kext, no DriverKit, the original control surface as an AUv3 / VST3.</p>
+          </div>
+          <div class="project-links">
+            <a href="https://virux.alephvoid.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Live Site &rarr;</a>
+            <a href="https://github.com/aleph-void/virux.alephvoid.com" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">GitHub &rarr;</a>
+          </div>
+        </div>
+
+        <div class="project-body">
+          <p class="project-description">
+            Access shipped the Virus TI with an x86 kernel extension that never made the jump to Apple Silicon, stranding the hardware on legacy machines. Aleph Virux rebuilds the entire stack from scratch in userspace &mdash; the whole USB stack talks to the device over IOUSBLib, so nothing loads into the kernel and there's no system extension to approve or reboot to install. A lightweight container app claims the Virus over USB and keeps its keepalive stream alive; the AUv3 extension and VST3 plugin then connect to it over XPC / IPC, so a single USB device can drive multiple plugin instances without a kernel driver in the middle. The on-screen editor &mdash; oscillators, filters, LFOs, the modulation matrix, arpeggiator, and the full effects section &mdash; is sourced from the documented page&nbsp;A/B parameter model, with multi-channel USB audio captured through CoreAudio and full note / CC / parameter control over the device's native vendor protocol. The macOS VST3 build passes the Steinberg SDK validator 47/47. Built clean-room from a reverse-engineered understanding of the protocol, with no vendor binaries required; the macOS driver and plugins do no networking and collect nothing.
+          </p>
+
+          <div class="stats-row">
+            <div class="stat">
+              <div class="stat-value">47/47</div>
+              <div class="stat-label">VST3 Validator</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">2</div>
+              <div class="stat-label">Platforms</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">0</div>
+              <div class="stat-label">Kernel Extensions</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">3</div>
+              <div class="stat-label">Virus TI Models</div>
+            </div>
+          </div>
+
+          <div class="tech-tags">
+            <span class="tag">C++</span>
+            <span class="tag">Swift</span>
+            <span class="tag">IOUSBLib</span>
+            <span class="tag">Core Audio</span>
+            <span class="tag">AUv3</span>
+            <span class="tag">VST3</span>
+            <span class="tag">XPC / IPC</span>
+            <span class="tag">USB Reverse Engineering</span>
+            <span class="tag">Kotlin</span>
+          </div>
+
+          <div class="arch-section">
+            <h4>Key Features</h4>
+            <div class="arch-grid">
+              <div class="arch-item">
+                <div class="arch-name">Userspace USB Driver</div>
+                <div class="arch-detail">IOUSBLib &middot; no kext, no DriverKit</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Container + Plugin over IPC</div>
+                <div class="arch-detail">One device, many plugin instances</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">AUv3 &amp; VST3</div>
+                <div class="arch-detail">Logic, GarageBand, Ableton Live, any host</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Original Control Surface</div>
+                <div class="arch-detail">Osc, filter, LFO, matrix, arp, FX</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Audio &amp; MIDI Over USB</div>
+                <div class="arch-detail">CoreAudio capture &middot; vendor control protocol</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Clean-Room Protocol</div>
+                <div class="arch-detail">No vendor binaries &middot; no data collection</div>
+              </div>
+            </div>
+          </div>
+
+          <p style="font-size:0.85rem; color:var(--text-muted); font-family:'JetBrains Mono',monospace;">
+            Platforms: macOS on Apple Silicon (AUv3 / VST3) &middot; Android with USB host vendor access &nbsp;&mdash;&nbsp; requires an Access Virus TI Snow, Desktop, or Polar over USB. No iOS build &mdash; iOS forbids the vendor USB access this needs.
+          </p>
+        </div>
+
+        <div class="screenshots-section">
+          <p class="screenshots-label">// Screenshots &mdash; macOS (AUv3 / VST3)</p>
+          <div class="screenshots-grid">
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/virux-macos-screenshot0001.png" alt="Aleph Virux oscillator edit page running as an AUv3 plugin on macOS" loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/virux-macos-screenshot0002.png" alt="Aleph Virux modulation matrix page on macOS" loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/virux-macos-screenshot0003.png" alt="Aleph Virux effects section on macOS" loading="lazy">
+            </div>
+          </div>
+          <p class="screenshots-label" style="margin-top:1.5rem;">// Screenshots &mdash; Android</p>
+          <div class="screenshots-grid">
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/virux-android-screenshot0001.jpg" alt="Aleph Virux preset browser in the Android control app" loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/virux-android-screenshot0002.jpg" alt="Aleph Virux arpeggiator page on Android" loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/virux-android-screenshot0003.jpg" alt="Aleph Virux modulation matrix page on Android" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- CVOSC -->
+      <article class="project-entry">
+        <div class="project-header">
+          <div class="project-header-left">
+            <p class="project-label">// Commercial &mdash; Mobile / Audio &amp; Modular Synthesis</p>
+            <h2 class="project-title">CVOsc</h2>
+            <p class="project-tagline">A multichannel oscilloscope for iOS and Android that turns a phone or tablet plus a DC-coupled audio interface into a real-time monitor for control voltage and audio signals from Eurorack and modular synth systems.</p>
+          </div>
+          <div class="project-links">
+            <a href="https://cvosc.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Live Site &rarr;</a>
+            <a href="https://apps.apple.com/us/app/cvosc/id6767967087" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">App Store &rarr;</a>
+            <a href="https://play.google.com/store/apps/details?id=com.alephvoid.cvosc.android" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Google Play &rarr;</a>
+          </div>
+        </div>
+
+        <div class="project-body">
+          <p class="project-description">
+            CVOsc streams every input on a DC-offset-capable, class-compliant USB audio interface simultaneously &mdash; up to 16 channels at once &mdash; rendering each as its own live oscilloscope pane in a grid that adapts to the device (4&times;4 on tablets, 2&times;2 on phones). Each channel can run in either CV or audio-rate mode with independent vertical scale, DC offset, and time-base controls, plus autoscaling that fits the waveform to its observed range. A live tuning view uses autocorrelation for audio signals and V/oct mapping for CV, so pitched oscillators and control voltages can be read off directly. Selected channels can be captured to per-channel CAF / WAV files with a JSON sidecar and played back &mdash; with hardware-level DC-safety validation before any output is enabled, drawn from a built-in catalog of known DC-coupled interfaces. All processing and every recording stay local to the device; no data is collected.
+          </p>
+
+          <div class="stats-row">
+            <div class="stat">
+              <div class="stat-value">16</div>
+              <div class="stat-label">Input Channels</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">2</div>
+              <div class="stat-label">Platforms</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">3</div>
+              <div class="stat-label">View Modes</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">2</div>
+              <div class="stat-label">Signal Modes</div>
+            </div>
+          </div>
+
+          <div class="tech-tags">
+            <span class="tag">Swift</span>
+            <span class="tag">SwiftUI</span>
+            <span class="tag">Core Audio</span>
+            <span class="tag">Kotlin</span>
+            <span class="tag">Jetpack Compose</span>
+            <span class="tag">AAudio</span>
+            <span class="tag">USB Audio Class</span>
+            <span class="tag">DSP / Autocorrelation</span>
+          </div>
+
+          <div class="arch-section">
+            <h4>Key Features</h4>
+            <div class="arch-grid">
+              <div class="arch-item">
+                <div class="arch-name">16-Channel Monitoring</div>
+                <div class="arch-detail">Adaptive grid &middot; 4&times;4 tablet, 2&times;2 phone</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">CV &amp; Audio Modes</div>
+                <div class="arch-detail">Per-channel signal-type handling</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Per-Channel Scaling</div>
+                <div class="arch-detail">Range, DC offset &amp; time base</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Live Tuning</div>
+                <div class="arch-detail">Autocorrelation &middot; V/oct mapping</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">Recording &amp; Export</div>
+                <div class="arch-detail">Per-channel CAF / WAV + JSON sidecar</div>
+              </div>
+              <div class="arch-item">
+                <div class="arch-name">DC-Safe Playback</div>
+                <div class="arch-detail">Hardware validation before output</div>
+              </div>
+            </div>
+          </div>
+
+          <p style="font-size:0.85rem; color:var(--text-muted); font-family:'JetBrains Mono',monospace;">
+            Platforms: iOS 26.4+ (iPad &amp; iPhone) &middot; Android 7.0+ (SDK 24) &nbsp;&mdash;&nbsp; requires a class-compliant USB audio interface; DC-coupled interface needed for CV work
+          </p>
+        </div>
+
+        <div class="screenshots-section">
+          <p class="screenshots-label">// Screenshots &mdash; iOS</p>
+          <div class="screenshots-grid">
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/cvosc-ios-screenshot0001.png" alt="CVOsc on iPad showing a 16-channel oscilloscope grid with CV and audio waveforms" loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/cvosc-ios-screenshot0002.png" alt="CVOsc iOS per-channel configuration sheet with signal type, range, and offset controls" loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/cvosc-ios-screenshot0003.png" alt="CVOsc iOS recordings panel listing captured per-channel sessions for playback" loading="lazy">
+            </div>
+          </div>
+          <p class="screenshots-label" style="margin-top:1.5rem;">// Screenshots &mdash; Android</p>
+          <div class="screenshots-grid">
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/cvosc-android-screenshot0001.jpg" alt="CVOsc on Android showing the 16-channel oscilloscope grid and control sidebar" loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/cvosc-android-screenshot0002.jpg" alt="CVOsc Android channel settings with CV/Audio signal type, autoscale, range, offset, and time base" loading="lazy">
+            </div>
+            <div class="screenshot-wrap">
+              <img src="assets/portfolio/cvosc-android-screenshot0003.jpg" alt="CVOsc Android recordings panel showing an ES-9 DC-coupled output and captured channels" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <footer>
+    <p style="margin-bottom:0.5rem;">
+      <a href="/">&#8592; Back to Aleph Void, LLC</a>
+    </p>
+    &copy; {{ site.time | date: '%Y' }} Aleph Void, LLC. All rights reserved.
+  </footer>
+
+</body>
+</html>
